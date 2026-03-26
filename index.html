@@ -1,0 +1,2555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calyvon AI — AI-Powered Growth for Local Service Businesses</title>
+  <meta name="description" content="Calyvon AI is the complete AI-powered growth platform for local service businesses — AI Employee, digital marketing, and automation working 24/7. Book a free strategy call today.">
+  <link rel="canonical" href="https://calyvonai.com">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Calyvon AI — AI-Powered Growth for Local Service Businesses">
+  <meta property="og:description" content="Calyvon AI is the complete AI-powered growth platform for local service businesses — AI Employee, digital marketing, and automation working 24/7. Book a free strategy call today.">
+  <meta property="og:url" content="https://calyvonai.com">
+  <meta property="og:type" content="website">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    :root {
+      --color-white: #FFFFFF;
+      --color-navy: #0F2444;
+      --color-light-gray: #F9FAFB;
+      --color-card-bg: #F9FAFB;
+      --color-border: #E5E7EB;
+      --color-teal: #06B6D4;
+      --color-purple: #8B5CF6;
+      --color-green: #1D9E75;
+      --color-secondary-text: #6B7280;
+      --color-blue-light: #EFF6FF;
+      --color-blue-text: #1D4ED8;
+      --color-blue-border: #BFDBFE;
+      --gradient-primary: linear-gradient(135deg, #06B6D4, #8B5CF6);
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-nav: 0 1px 4px rgba(0,0,0,0.1);
+      --shadow-mobile-bar: 0 -2px 10px rgba(0,0,0,0.1);
+      --radius-card: 12px;
+      --radius-button: 100px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--color-navy);
+      background: var(--color-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Scroll Progress Bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      width: 0%;
+      z-index: 10000;
+      transition: width 0.1s ease-out;
+    }
+    
+    /* Scroll Animations */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* ── NAV BASE ── */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .navbar.scrolled,
+    .navbar.menu-open {
+      background: #010648;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px 0 55px;
+      height: 72px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* ── LOGO ── */
+    .nav-logo-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-logo-img {
+      height: 53px;
+      width: auto;
+      display: block;
+    }
+    .nav-brand-text {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── CENTER LINKS ── */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 64px;
+    }
+    .nav-item {
+      position: relative;
+    }
+    .nav-link-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      color: #ffffff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: color 0.2s ease, background 0.2s ease;
+      font-family: inherit;
+    }
+    .nav-link-btn:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    .nav-link-plain {
+      font-size: 15px;
+      font-weight: 500;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: color 0.2s ease;
+    }
+    .nav-chevron {
+      transition: transform 0.2s ease;
+    }
+    .nav-item.open .nav-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* ── MEGA MENU BASE (all dropdowns) ── */
+    .nav-dropdown {
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: #010648;
+      border-radius: 0;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4px);
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+      z-index: 999;
+    }
+    .nav-dropdown.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .mega-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 40px 48px 55px;
+    }
+
+    /* ── WHO WE HELP MEGA ── */
+    .who-mega-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0 24px;
+    }
+    .who-mega-col-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .who-mega-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin: 4px 0;
+      background: #162040;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .who-mega-link:hover {
+      background: #1e2e58;
+      border-color: rgba(6,182,212,0.3);
+    }
+    .who-mega-icon {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+    .mega-item-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── WHO WE SERVE — COLUMN CONTAINER ── */
+    .who-mega-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── WHAT WE DO MEGA — 7-card nav grid ── */
+    .what-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .what-nav-card {
+      background: #162040;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 18px 16px;
+      text-decoration: none;
+      transition: background 0.15s ease, border-color 0.15s ease;
+      display: block;
+    }
+    .what-nav-card:hover {
+      background: #1e2e58;
+      border-color: rgba(6,182,212,0.3);
+    }
+    .what-nav-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+    .what-nav-card-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+    }
+
+    /* ── RESOURCES MEGA ── */
+    .resources-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 680px;
+    }
+    .resources-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: #162040;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 32px 36px;
+      text-decoration: none;
+      transition: background 0.18s ease;
+    }
+    .resources-card:hover { background: #1e2e58; }
+    .resources-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(6,182,212,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #06B6D4;
+      flex-shrink: 0;
+    }
+    .resources-card-body { flex: 1; }
+    .resources-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* ── RIGHT SIDE ── */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+    .nav-phone {
+      font-size: 14px;
+      font-weight: 500;
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-phone:hover {
+      color: #06B6D4;
+    }
+    .nav-contact-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      padding: 7px 16px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 100px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+      white-space: nowrap;
+    }
+    .nav-contact-link:hover {
+      color: #ffffff;
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    /* THEME TOGGLE */
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ffffff;
+      padding: 6px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+    .theme-toggle:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* GET STARTED BUTTON */
+    .nav-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, #06B6D4, #8B5CF6);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      white-space: nowrap;
+    }
+    .nav-cta-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: #010648;
+      padding: 16px 24px 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .mobile-menu.open {
+      max-height: 1000px;
+    }
+    .mobile-link {
+      font-size: 16px;
+      font-weight: 500;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .mobile-accordion-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: none;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      color: #ffffff;
+      padding: 14px 0;
+      font-family: inherit;
+      text-align: left;
+    }
+    .mobile-accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding-left: 16px;
+    }
+    .mobile-accordion-content.open {
+      max-height: 900px;
+    }
+    .mobile-sub-category {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      padding: 12px 0 4px;
+      margin: 0;
+    }
+    .mobile-sub-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      padding: 10px 0;
+    }
+    .mobile-disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+    .mobile-cta {
+      display: block;
+      text-align: center;
+      margin-top: 16px;
+      padding: 14px;
+      background: linear-gradient(135deg, #06B6D4, #8B5CF6);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 100px;
+      text-decoration: none;
+    }
+
+    /* ── NAVBAR RESPONSIVE ── */
+    @media (max-width: 1280px) {
+      .mega-inner { padding: 32px 32px 40px; }
+      .who-mega-grid { gap: 0 16px; }
+      .what-mega-grid { gap: 0 24px; }
+    }
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .nav-phone { display: none; }
+      .nav-contact-link { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
+      .nav-container { padding: 0 20px; }
+      .nav-dropdown { display: none !important; }
+    }
+
+    /* SHARED BUTTON STYLES */
+    .btn-gradient {
+      background: var(--gradient-primary);
+      color: var(--color-white);
+      padding: 12px 28px;
+      border-radius: var(--radius-button);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-gradient:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+    }
+    .btn-gradient-large {
+      padding: 16px 40px;
+      font-size: 16px;
+    }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+    
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+    
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.55);
+      z-index: -1;
+    }
+    
+    .hero-content {
+      text-align: left;
+      color: var(--color-white);
+      max-width: 65%;
+      padding: 110px 0 0 60px;
+      z-index: 1;
+    }
+    
+    .hero-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: clamp(80px, 12vw, 150px);
+      line-height: 0.95;
+      letter-spacing: -3px;
+      color: #ffffff;
+      margin-bottom: 48px;
+      max-width: 700px;
+    }
+
+    .hero-headline-static {
+      display: block;
+    }
+
+    .hero-headline-rotating {
+      display: block;
+      position: relative;
+      height: 0.95em;
+      font-size: inherit;
+      font-weight: 900;
+    }
+    
+    .rotating-word {
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .rotating-word.active {
+      opacity: 1;
+    }
+    
+    .hero-subheadline {
+      font-size: 22px;
+      line-height: 1.4;
+      font-weight: 400;
+      color: rgba(255,255,255,0.88);
+      max-width: 560px;
+      margin-bottom: 48px;
+      letter-spacing: 0px;
+      text-transform: none;
+    }
+
+    .hero-trust-logos {
+      display: flex;
+      align-items: flex-start;
+      gap: 64px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+
+    .hero-trust-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .hero-trust-img {
+      height: 80px;
+      width: auto;
+      object-fit: contain;
+      filter: none;
+      opacity: 1;
+    }
+
+    .hero-trust-caption {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.90);
+      text-align: center;
+      letter-spacing: 0.5px;
+      margin: 0;
+      max-width: 140px;
+      line-height: 1.3;
+    }
+    
+    /* Stats Section */
+    .stats {
+      padding: 100px 24px;
+      background: var(--color-white);
+    }
+    
+    .section-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-teal);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    
+    .section-headline {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 800;
+      color: var(--color-navy);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    
+    .section-subline {
+      font-size: 17px;
+      color: var(--color-secondary-text);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+    
+    .stats-grid {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      max-width: 900px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 88px;
+      font-weight: 800;
+      color: var(--color-navy);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    
+    .stat-pill {
+      display: inline-block;
+      background: var(--color-blue-light);
+      color: var(--color-blue-text);
+      padding: 6px 16px;
+      border-radius: var(--radius-button);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    
+    /* Trust Section */
+    .trust {
+      padding: 100px 24px;
+      background: var(--color-light-gray);
+    }
+    
+    .marquee-wrapper {
+      overflow: hidden;
+      width: 100%;
+      margin-bottom: 0;
+      margin-top: 48px;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+
+    .marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      width: max-content;
+      animation: marquee-scroll 35s linear infinite;
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    .integration-logo {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+      padding: 0 50px;
+    }
+
+    @keyframes marquee-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Cert Badges Section */
+    .cert-badges-section {
+      background: #ffffff;
+      padding: 64px 80px;
+      border-top: 1px solid #E5E7EB;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .cert-badges-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .cert-badge-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cert-badge-img {
+      height: 100px;
+      width: auto;
+      object-fit: contain;
+      filter: none;
+      opacity: 1;
+    }
+
+    .cert-badge-caption {
+      font-size: 13px;
+      font-weight: 600;
+      color: #6B7280;
+      text-align: center;
+      letter-spacing: 0.3px;
+      margin: 0;
+    }
+
+    body.dark-mode .cert-badge-caption {
+      color: #9CA3AF;
+    }
+
+    /* ── DARK MODE — PAGE-WIDE ── */
+    body.dark-mode {
+      background: #0D1117 !important;
+    }
+    body.dark-mode section {
+      background: #0D1117 !important;
+    }
+    body.dark-mode .section-alt,
+    body.dark-mode [class*="section"] {
+      background: #111827 !important;
+    }
+    body.dark-mode .card,
+    body.dark-mode [class*="card"] {
+      background: #111827 !important;
+      border-color: #1F2937 !important;
+    }
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3,
+    body.dark-mode h4 {
+      color: #ffffff !important;
+    }
+    body.dark-mode p,
+    body.dark-mode li,
+    body.dark-mode span:not(.nav-cta):not(.coming-soon-badge):not(.mob-coming) {
+      color: #9CA3AF !important;
+    }
+    body.dark-mode footer {
+      background: #0A0F16 !important;
+      border-color: #1F2937 !important;
+    }
+    body.dark-mode .cert-badges-section {
+      background: #111827 !important;
+      border-color: #1F2937 !important;
+    }
+    body.dark-mode .trust-section {
+      background: #111827 !important;
+    }
+    body.dark-mode .industry-section {
+      background: #111827 !important;
+    }
+    body.dark-mode .stats-section {
+      background: #111827 !important;
+    }
+    body.dark-mode .phone-section {
+      background: #0D1117 !important;
+    }
+
+    /* Solutions Section */
+    .solutions {
+      padding: 100px 24px;
+      background: var(--color-white);
+      text-align: center;
+    }
+    .solutions .section-label { margin-bottom: 12px; }
+    .solutions .section-headline { margin-bottom: 16px; }
+    .solutions .section-subline { margin-bottom: 48px; }
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .solution-card {
+      position: relative;
+      height: 480px;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #111827;
+    }
+    .solution-card-video-container {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: #111827;
+    }
+    .solution-card video {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .solution-card-overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to bottom, transparent 0%, transparent 30%, rgba(0,0,0,0.88) 100%);
+      z-index: 1;
+    }
+    .solution-card-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 28px; z-index: 2; color: var(--color-white);
+      text-align: left;
+    }
+    .solution-card-title { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .solution-card-desc { font-size: 14px; line-height: 1.6; opacity: 0.9; margin-bottom: 16px; }
+    .solution-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--color-teal); font-size: 14px; font-weight: 600; text-decoration: none;
+    }
+    .solution-card-link:hover { text-decoration: underline; }
+    
+    /* Industry Section */
+    .industries {
+      position: relative;
+      padding: 100px 24px;
+      overflow: hidden;
+    }
+    
+    .industries-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+    
+    .industries-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.75);
+      z-index: -1;
+    }
+    
+    .industries .section-headline,
+    .industries .section-subline {
+      color: var(--color-white);
+    }
+    
+    .industries .section-subline {
+      opacity: 0.8;
+    }
+    
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    
+    .industries-grid-row2 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 825px;
+      margin: 20px auto 0;
+    }
+    
+    .industry-card {
+      position: relative;
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      cursor: pointer;
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.2s ease;
+    }
+    
+    .industry-card:hover {
+      transform: translateY(-4px);
+    }
+    
+    .industry-card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      transition: background 0.2s ease;
+    }
+    
+    .industry-card:hover .industry-card-overlay {
+      background: rgba(0,0,0,0.65);
+    }
+    
+    .industry-card-content {
+      position: relative;
+      z-index: 2;
+      padding: 24px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    
+    .industry-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      margin-bottom: 12px;
+    }
+    
+    .industry-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: 6px;
+    }
+    
+    .industry-outcome {
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+    
+    /* Phone Mockup Section */
+    .phone-section {
+      padding: 100px 24px;
+      background: var(--color-white);
+    }
+    
+    .phone-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    
+    .phone-content {
+      max-width: 480px;
+    }
+    
+    .phone-content .section-headline {
+      text-align: left;
+      margin-bottom: 16px;
+    }
+    
+    .phone-content .section-subline {
+      text-align: left;
+      margin-bottom: 32px;
+    }
+    
+    .bullet-list {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+    
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 16px;
+      color: var(--color-navy);
+    }
+    
+    .bullet-icon {
+      color: var(--color-green);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .phone-mockup {
+      display: flex;
+      justify-content: center;
+    }
+    
+    .phone-frame {
+      width: 280px;
+      height: 560px;
+      background: var(--color-navy);
+      border-radius: 40px;
+      position: relative;
+      padding: 12px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+    }
+    
+    .phone-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 28px;
+      background: var(--color-navy);
+      border-radius: 0 0 20px 20px;
+      z-index: 10;
+    }
+    
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: var(--color-white);
+      border-radius: 32px;
+      overflow: hidden;
+      padding: 40px 16px 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .chat-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow: hidden;
+    }
+    
+    .chat-bubble {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 18px;
+      font-size: 13px;
+      line-height: 1.5;
+      opacity: 0;
+      animation: fadeInBubble 0.4s ease forwards;
+    }
+    
+    .chat-bubble.customer {
+      align-self: flex-start;
+      background: #F3F4F6;
+      color: var(--color-navy);
+      border-bottom-left-radius: 4px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    
+    .chat-bubble.ai {
+      align-self: flex-end;
+      background: var(--gradient-primary);
+      color: var(--color-white);
+      border-bottom-right-radius: 4px;
+    }
+    
+    .chat-avatar {
+      width: 28px;
+      height: 28px;
+      background: var(--color-navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-size: 10px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: 12px 16px;
+      background: var(--gradient-primary);
+      border-radius: 18px;
+      border-bottom-right-radius: 4px;
+      align-self: flex-end;
+      opacity: 0;
+    }
+    
+    .typing-indicator.active {
+      opacity: 1;
+    }
+    
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--color-white);
+      border-radius: 50%;
+      animation: typingBounce 1s infinite;
+    }
+    
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-4px); }
+    }
+    
+    @keyframes fadeInBubble {
+      to { opacity: 1; }
+    }
+    
+    /* Calendar Section */
+    .calendar {
+      padding: 100px 24px;
+      background: var(--color-white);
+    }
+    
+    .calendar-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+    }
+    
+    .calendar-card iframe {
+      width: 100%;
+      border: none;
+      min-height: 600px;
+    }
+    
+    /* Final CTA Section */
+    .final-cta {
+      padding: 100px 24px;
+      background: linear-gradient(135deg, #0D0A2C 0%, #130d3a 50%, #0F0A2E 100%);
+      text-align: center;
+    }
+    
+    .final-cta-headline {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
+      color: var(--color-white);
+      margin-bottom: 32px;
+    }
+    
+    .final-cta-features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px 32px;
+      margin-top: 24px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .final-cta-phone {
+      display: inline-block;
+      margin-top: 24px;
+      color: var(--color-teal);
+      font-size: 18px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--color-white);
+      border-top: 1px solid var(--color-border);
+      padding: 60px 24px 0;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      padding-bottom: 40px;
+    }
+    
+    .footer-logo {
+      width: 140px;
+      height: auto;
+      margin-bottom: 16px;
+    }
+    
+    .footer-tagline {
+      font-size: 14px;
+      color: var(--color-secondary-text);
+      margin-bottom: 16px;
+    }
+    
+    .footer-copyright {
+      font-size: 13px;
+      color: var(--color-secondary-text);
+    }
+    
+    .footer-column-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-navy);
+      margin-bottom: 20px;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      font-size: 14px;
+      color: var(--color-secondary-text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--color-navy);
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid var(--color-border);
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-bottom-text {
+      font-size: 13px;
+      color: var(--color-secondary-text);
+    }
+    
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+    
+    .footer-bottom-links a {
+      font-size: 13px;
+      color: var(--color-secondary-text);
+      text-decoration: none;
+    }
+    
+    .footer-bottom-links a:hover {
+      color: var(--color-navy);
+    }
+    
+    /* Exit Popup */
+    .exit-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .exit-popup.show {
+      display: flex;
+      opacity: 1;
+    }
+    
+    .exit-popup-card {
+      background: var(--color-white);
+      border: 2px solid var(--color-navy);
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 340px;
+      text-align: center;
+      position: relative;
+      animation: popupSlideIn 0.3s ease;
+    }
+    
+    @keyframes popupSlideIn {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .exit-popup-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-secondary-text);
+      padding: 4px;
+    }
+    
+    .exit-popup-logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    
+    .exit-popup-headline {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--color-navy);
+      margin-bottom: 16px;
+    }
+    
+    .exit-popup-text {
+      font-size: 14px;
+      color: var(--color-secondary-text);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    
+    .exit-popup-deadline {
+      font-weight: 700;
+      color: var(--color-navy);
+    }
+    
+    .exit-popup-note {
+      font-size: 12px;
+      color: var(--color-secondary-text);
+      margin-top: 16px;
+    }
+    
+    /* Mobile Sticky Bar */
+    .mobile-sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--color-white);
+      box-shadow: var(--shadow-mobile-bar);
+      padding: 14px 20px;
+      z-index: 999;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .mobile-sticky-bar.show {
+      transform: translateY(0);
+    }
+    
+    .mobile-sticky-bar .btn-gradient {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-content {
+        max-width: 65%;
+        padding-left: 40px;
+      }
+      
+      .industries-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .industries-grid-row2 {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+      }
+      
+      .phone-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .phone-content .section-headline,
+      .phone-content .section-subline {
+        text-align: center;
+      }
+      
+      .bullet-list {
+        display: inline-block;
+        text-align: left;
+      }
+      
+      .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-content {
+        text-align: center;
+        max-width: 100%;
+        padding: 0 24px;
+      }
+      
+      .hero-subheadline {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 32px;
+      }
+      
+      .hero-trust-logos {
+        gap: 28px;
+        justify-content: center;
+      }
+
+      .hero-trust-img {
+        height: 52px;
+      }
+
+      .hero-trust-caption {
+        font-size: 10px;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .nav-right .nav-phone {
+        display: none;
+      }
+      
+      .nav-right .btn-gradient {
+        display: none;
+      }
+      
+      .hamburger {
+        display: block;
+        color: var(--color-white);
+      }
+      
+      .stats-grid {
+        flex-direction: column;
+        gap: 40px;
+      }
+      
+      .stat-number {
+        font-size: 64px;
+      }
+      
+      .solutions-grid {
+        grid-template-columns: 1fr;
+      }
+      .solution-card { height: 360px; }
+
+      .industries-grid,
+      .industries-grid-row2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .certifications-row {
+        gap: 24px;
+      }
+      
+      .cert-logo {
+        max-height: 50px;
+      }
+      
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .footer-logo {
+        margin: 0 auto 16px;
+      }
+      
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+      
+      .mobile-sticky-bar {
+        display: block;
+      }
+      
+      body {
+        padding-bottom: 70px;
+      }
+      
+      .exit-popup-card {
+        width: 90vw;
+        max-width: 90vw;
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+  
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo-link">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/6943ff695b256b9571a1eb3a.svg"
+             alt="Calyvon AI" class="nav-logo-img" id="navLogo" loading="eager">
+        <span class="nav-brand-text">Calyvon AI</span>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="nav-links" id="navLinks">
+
+        <!-- Who We Serve dropdown -->
+        <div class="nav-item has-dropdown" id="whoItem">
+          <button class="nav-link-btn" id="whoBtn" aria-haspopup="true" aria-expanded="false">
+            Who We Serve <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav-dropdown who-dropdown" id="whoDropdown" role="menu">
+            <div class="mega-inner">
+              <div class="who-mega-grid">
+                <!-- Column 1 -->
+                <div class="who-mega-col">
+                  <p class="who-mega-col-title">Home Services</p>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="wrench" class="who-mega-icon"></i>Plumbing</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="wind" class="who-mega-icon"></i>HVAC</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="bug" class="who-mega-icon"></i>Pest Control</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="zap" class="who-mega-icon"></i>Electrical</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="home" class="who-mega-icon"></i>Roofing</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="leaf" class="who-mega-icon"></i>Landscaping</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="hammer" class="who-mega-icon"></i>Handyman</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="droplets" class="who-mega-icon"></i>Pool &amp; Spa</a>
+                </div>
+                <!-- Column 2 -->
+                <div class="who-mega-col">
+                  <p class="who-mega-col-title">Legal &amp; Professional</p>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="gavel" class="who-mega-icon"></i>Personal Injury</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="heart" class="who-mega-icon"></i>Family Law</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="shield" class="who-mega-icon"></i>Criminal Defense</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="globe" class="who-mega-icon"></i>Immigration</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="file-text" class="who-mega-icon"></i>Estate &amp; Probate</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="calculator" class="who-mega-icon"></i>Accounting &amp; Tax</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="trending-up" class="who-mega-icon"></i>Financial Advisory</a>
+                </div>
+                <!-- Column 3 -->
+                <div class="who-mega-col">
+                  <p class="who-mega-col-title">Other Local Businesses</p>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="building-2" class="who-mega-icon"></i>Real Estate</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="activity" class="who-mega-icon"></i>Dental &amp; Medical</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="car" class="who-mega-icon"></i>Auto Repair</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="paw-print" class="who-mega-icon"></i>Pet Care &amp; Grooming</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="coffee" class="who-mega-icon"></i>Restaurants &amp; Hospitality</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="dumbbell" class="who-mega-icon"></i>Fitness &amp; Wellness</a>
+                  <a href="contact.html" class="who-mega-link"><i data-lucide="sparkles" class="who-mega-icon"></i>Cleaning Services</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- What We Do dropdown -->
+        <div class="nav-item has-dropdown" id="whatItem">
+          <button class="nav-link-btn" id="whatBtn" aria-haspopup="true" aria-expanded="false">
+            What We Do <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav-dropdown what-dropdown" id="whatDropdown" role="menu">
+            <div class="mega-inner">
+              <div class="what-nav-grid">
+                <a href="https://aiemployee.calyvonai.com/24-7-ai-lead-management-local-business" class="what-nav-card">
+                  <div class="what-nav-card-title">AI Employee</div>
+                  <div class="what-nav-card-desc">Trained to your business. Handles leads 24/7 and books your calendar.</div>
+                </a>
+                <a href="contact.html" class="what-nav-card">
+                  <div class="what-nav-card-title">SEO / GEO / AEO</div>
+                  <div class="what-nav-card-desc">Put your business at the top of local search results.</div>
+                </a>
+                <a href="contact.html" class="what-nav-card">
+                  <div class="what-nav-card-title">Conversational Website</div>
+                  <div class="what-nav-card-desc">Built to turn visitors into paying customers.</div>
+                </a>
+                <a href="contact.html" class="what-nav-card">
+                  <div class="what-nav-card-title">Reputation Management</div>
+                  <div class="what-nav-card-desc">Automated reviews that win bigger bids.</div>
+                </a>
+                <a href="contact.html" class="what-nav-card">
+                  <div class="what-nav-card-title">Social Media Management</div>
+                  <div class="what-nav-card-desc">Stay top-of-mind without lifting a finger.</div>
+                </a>
+                <a href="contact.html" class="what-nav-card">
+                  <div class="what-nav-card-title">Digital Advertising</div>
+                  <div class="what-nav-card-desc">Track every dollar back to real growth.</div>
+                </a>
+                <a href="contact.html" class="what-nav-card">
+                  <div class="what-nav-card-title">Agency Partner Program</div>
+                  <div class="what-nav-card-desc">White-label our full platform under your brand.</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resources dropdown -->
+        <div class="nav-item has-dropdown" id="resourcesItem">
+          <button class="nav-link-btn" id="resourcesBtn" aria-haspopup="true" aria-expanded="false">
+            Resources <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav-dropdown resources-dropdown" id="resourcesDropdown" role="menu">
+            <div class="mega-inner" style="padding-top:32px;padding-bottom:32px;">
+              <div class="resources-cards">
+                <a href="/blog" class="resources-card">
+                  <div class="resources-card-icon">
+                    <i data-lucide="newspaper" style="width:22px;height:22px;"></i>
+                  </div>
+                  <div class="resources-card-body">
+                    <div class="resources-card-title">Blog</div>
+                  </div>
+                </a>
+                <a href="faqs.html" class="resources-card" id="faq-nav-link">
+                  <div class="resources-card-icon">
+                    <i data-lucide="help-circle" style="width:22px;height:22px;"></i>
+                  </div>
+                  <div class="resources-card-body">
+                    <div class="resources-card-title">FAQ</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <a href="contact.html" class="nav-link-plain">Contact Us</a>
+      </div><!-- /nav-links -->
+
+      <!-- Right side -->
+      <div class="nav-right">
+        <a href="tel:+17696001145" class="nav-phone">+1 769-600-1145</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="contact.html" class="nav-cta-btn btn-gradient">Get Started</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div><!-- /nav-container -->
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+
+      <!-- Who We Serve accordion -->
+      <button class="mobile-accordion-btn" data-target="mobileWho">
+        Who We Serve
+        <svg class="sub-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="mobile-accordion-content" id="mobileWho">
+        <p class="mobile-sub-category">Home Services</p>
+        <a href="contact.html" class="mobile-sub-link">Plumbing</a>
+        <a href="contact.html" class="mobile-sub-link">HVAC</a>
+        <a href="contact.html" class="mobile-sub-link">Pest Control</a>
+        <a href="contact.html" class="mobile-sub-link">Electrical</a>
+        <a href="contact.html" class="mobile-sub-link">Roofing</a>
+        <a href="contact.html" class="mobile-sub-link">Landscaping</a>
+        <a href="contact.html" class="mobile-sub-link">Handyman</a>
+        <a href="contact.html" class="mobile-sub-link">Pool &amp; Spa</a>
+        <p class="mobile-sub-category">Legal &amp; Professional</p>
+        <a href="contact.html" class="mobile-sub-link">Personal Injury</a>
+        <a href="contact.html" class="mobile-sub-link">Family Law</a>
+        <a href="contact.html" class="mobile-sub-link">Criminal Defense</a>
+        <a href="contact.html" class="mobile-sub-link">Immigration</a>
+        <a href="contact.html" class="mobile-sub-link">Estate &amp; Probate</a>
+        <a href="contact.html" class="mobile-sub-link">Accounting &amp; Tax</a>
+        <a href="contact.html" class="mobile-sub-link">Financial Advisory</a>
+        <p class="mobile-sub-category">Other Local Businesses</p>
+        <a href="contact.html" class="mobile-sub-link">Real Estate</a>
+        <a href="contact.html" class="mobile-sub-link">Dental &amp; Medical</a>
+        <a href="contact.html" class="mobile-sub-link">Auto Repair</a>
+        <a href="contact.html" class="mobile-sub-link">Pet Care &amp; Grooming</a>
+        <a href="contact.html" class="mobile-sub-link">Fitness &amp; Wellness</a>
+        <a href="contact.html" class="mobile-sub-link">Restaurants &amp; Hospitality</a>
+        <a href="contact.html" class="mobile-sub-link">Cleaning Services</a>
+      </div>
+
+      <!-- What We Do accordion -->
+      <button class="mobile-accordion-btn" data-target="mobileWhat">
+        What We Do
+        <svg class="sub-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="mobile-accordion-content" id="mobileWhat">
+        <p class="mobile-sub-category">AI Employee</p>
+        <a href="contact.html" class="mobile-sub-link">Never Miss a Lead</a>
+        <a href="contact.html" class="mobile-sub-link">Fill Your Calendar</a>
+        <a href="contact.html" class="mobile-sub-link">Run On Autopilot</a>
+        <p class="mobile-sub-category">Digital Marketing</p>
+        <a href="contact.html" class="mobile-sub-link">Get Found First</a>
+        <a href="contact.html" class="mobile-sub-link">Paid Advertising</a>
+        <a href="contact.html" class="mobile-sub-link">Dominate Local Search</a>
+        <p class="mobile-sub-category">Reputation Management</p>
+        <a href="contact.html" class="mobile-sub-link">Build Your Reputation</a>
+        <a href="contact.html" class="mobile-sub-link">Protect Your Brand</a>
+        <a href="contact.html" class="mobile-sub-link">Own Every Channel</a>
+        <p class="mobile-sub-category">Scale &amp; Systems</p>
+        <a href="contact.html" class="mobile-sub-link">CRM Integration</a>
+        <a href="contact.html" class="mobile-sub-link">Automated Follow-up</a>
+        <a href="contact.html" class="mobile-sub-link">Growth Analytics</a>
+      </div>
+
+      <!-- Resources accordion -->
+      <button class="mobile-accordion-btn" data-target="mobileResources">
+        Resources
+        <svg class="sub-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="mobile-accordion-content" id="mobileResources">
+        <a href="faqs.html" class="mobile-sub-link">FAQ</a>
+        <a href="/blog" class="mobile-sub-link">Blog</a>
+      </div>
+
+      <a href="contact.html" class="mobile-link">Contact Us</a>
+      <a href="tel:+17696001145" class="mobile-link">+1 769-600-1145</a>
+      <a href="contact.html" class="mobile-cta btn-gradient">Get Started</a>
+
+    </div><!-- /mobile-menu -->
+
+  </nav>
+  
+  <!-- Hero Section -->
+  <section class="hero" id="hero" data-animate>
+    <video class="hero-video" autoplay muted loop playsinline preload="none">
+      <source src="https://www.dropbox.com/scl/fi/oiq3ugvt9ewb4todpyibh/upscaled-video.mp4?rlkey=hehyefujtdgviikmu0wordn6n&st=99u0t1qp&dl=1" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content">
+      <h1 class="hero-headline">
+        <span class="hero-headline-static">GROW YOUR</span>
+        <span class="hero-headline-rotating">
+          <span class="rotating-word active">LEADS</span>
+          <span class="rotating-word">REVENUE</span>
+          <span class="rotating-word">BUSINESS</span>
+          <span class="rotating-word">BRAND</span>
+          <span class="rotating-word">RESULTS</span>
+        </span>
+      </h1>
+      <p class="hero-subheadline">We don't do impressions. We deliver revenue.</p>
+
+      <div class="hero-trust-logos">
+        <div class="hero-trust-item">
+          <img src="https://www.dropbox.com/scl/fi/jnh1p4x4r50s6uiad3gjy/soc.jpg?rlkey=kf6eb8zoe44hax5ijns5byj1r&st=b96mikmp&dl=1"
+          alt="SOC 2 Type II Certified"
+          class="hero-trust-img"
+          onerror="this.parentElement.style.display='none'">
+          <p class="hero-trust-caption">SOC 2 Type II Certified</p>
+        </div>
+        <div class="hero-trust-item">
+          <img src="https://www.dropbox.com/scl/fi/5u6p64q0pi6zzi9snk47b/aws.jpg?rlkey=dcdhnmi1io6ass2lauysms9w5&st=fzpcote0&dl=1"
+          alt="AWS Hosted Infrastructure"
+          class="hero-trust-img"
+          onerror="this.parentElement.style.display='none'">
+          <p class="hero-trust-caption">AWS Hosted Infrastructure</p>
+        </div>
+        <div class="hero-trust-item">
+          <img src="https://www.dropbox.com/scl/fi/28kk3aawu26aatre5199d/gdpr.jpg?rlkey=gvw7pdfyi96oflb9c76q4oocp&st=dvmfo8gr&dl=1"
+          alt="GDPR Compliant"
+          class="hero-trust-img"
+          onerror="this.parentElement.style.display='none'">
+          <p class="hero-trust-caption">GDPR Compliant</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  
+  <!-- Stats Section -->
+  <section class="stats" id="stats" data-animate>
+    <p class="section-label">By The Numbers</p>
+    <h2 class="section-headline">The numbers behind every decision we make</h2>
+    
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number" data-count="30-50">0</div>
+        <span class="stat-pill">Of local business calls go unanswered</span>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-count="21">0</div>
+        <span class="stat-pill">More likely to convert in under 5 minutes</span>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-count="10">0</div>
+        <span class="stat-pill">Average AI response time to missed calls</span>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Trust Section -->
+  <section class="trust" id="trust" data-animate>
+    <p class="section-label">Built on Trusted Infrastructure</p>
+    <h2 class="section-headline">Connected with platforms that power local business growth</h2>
+    
+    <div class="marquee-wrapper">
+      <div class="marquee-track">
+        <!-- Set 1 -->
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/6943ff695b256b9571a1eb3a.svg" alt="GoHighLevel" class="integration-logo" loading="lazy">
+        <img src="https://storage.googleapis.com/msgsndr/K0cPgnc4czjA0zpMOest/media/691608d41547ed595fc4d82f.png" alt="Google Ads" class="integration-logo" loading="lazy">
+        <img src="https://storage.googleapis.com/msgsndr/K0cPgnc4czjA0zpMOest/media/691608e1948ba50c8674d814.png" alt="Facebook" class="integration-logo" loading="lazy">
+        <img src="https://storage.googleapis.com/msgsndr/K0cPgnc4czjA0zpMOest/media/6917412d6c431e5d33c51239.png" alt="Instagram" class="integration-logo" loading="lazy">
+        <img src="https://storage.googleapis.com/msgsndr/K0cPgnc4czjA0zpMOest/media/6916198f948ba53cfe79a685.png" alt="Calendar" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/691608d4039bdcea15def796.png" alt="Stripe" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d86bedf5af02fde0927.jpg" alt="QuickBooks" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d86bedf5a07aede0928.jpg" alt="Xero" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d8605117bf03440b592.jpg" alt="Angi" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d8636226c0544e6a33f.jpg" alt="Housecall Pro" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d86c1440315762f2b98.jpg" alt="Google Business Profile" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d86bedf5a6d51de0929.jpg" alt="Jobber" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d86bedf5a0dcbde0922.jpg" alt="ServiceTitan" class="integration-logo" loading="lazy">
+        <!-- Set 2 — duplicate for seamless loop -->
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/6943ff695b256b9571a1eb3a.svg" alt="GoHighLevel" class="integration-logo" loading="lazy">
+        <img src="https://storage.googleapis.com/msgsndr/K0cPgnc4czjA0zpMOest/media/691608d41547ed595fc4d82f.png" alt="Google Ads" class="integration-logo" loading="lazy">
+        <img src="https://storage.googleapis.com/msgsndr/K0cPgnc4czjA0zpMOest/media/691608e1948ba50c8674d814.png" alt="Facebook" class="integration-logo" loading="lazy">
+        <img src="https://storage.googleapis.com/msgsndr/K0cPgnc4czjA0zpMOest/media/6917412d6c431e5d33c51239.png" alt="Instagram" class="integration-logo" loading="lazy">
+        <img src="https://storage.googleapis.com/msgsndr/K0cPgnc4czjA0zpMOest/media/6916198f948ba53cfe79a685.png" alt="Calendar" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/691608d4039bdcea15def796.png" alt="Stripe" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d86bedf5af02fde0927.jpg" alt="QuickBooks" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d86bedf5a07aede0928.jpg" alt="Xero" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d8605117bf03440b592.jpg" alt="Angi" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d8636226c0544e6a33f.jpg" alt="Housecall Pro" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d86c1440315762f2b98.jpg" alt="Google Business Profile" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d86bedf5a6d51de0929.jpg" alt="Jobber" class="integration-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c39d86bedf5a0dcbde0922.jpg" alt="ServiceTitan" class="integration-logo" loading="lazy">
+      </div>
+    </div>
+    
+  </section>
+  
+  <!-- Solutions Section -->
+  <section class="solutions" id="solutions" data-animate>
+    <p class="section-label">What We Offer</p>
+    <h2 class="section-headline">Everything your business needs to grow</h2>
+    <p class="section-subline">From AI automation to full digital marketing — one platform, one team, built for local service businesses.</p>
+    <div class="solutions-grid">
+      <article class="solution-card" data-animate data-video-src="https://www.dropbox.com/scl/fi/rq0xp5q902yw0zvgwsggn/dashboard.mp4?rlkey=63ga1be6ltwrl636hzn8lmwe1&st=ea0k5s21&dl=1">
+        <div class="solution-card-video-container"><video autoplay muted loop playsinline preload="none"></video></div>
+        <div class="solution-card-overlay"></div>
+        <div class="solution-card-content">
+          <h3 class="solution-card-title">AI Employee</h3>
+          <p class="solution-card-desc">Your 24/7 AI that answers calls, texts back missed leads, books jobs and handles DMs automatically. Never miss a lead again.</p>
+          <a href="https://aiemployee.calyvonai.com/24-7-ai-lead-management-local-business" class="solution-card-link">Learn More <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i></a>
+        </div>
+      </article>
+      <article class="solution-card" data-animate data-video-src="https://www.dropbox.com/scl/fi/vrm05t38s7yjbdjxwgcfp/digital-marketing.mp4?rlkey=94mjhhhdmf5uh35oc7846h3zp&st=9iasuxsg&dl=1">
+        <div class="solution-card-video-container"><video autoplay muted loop playsinline preload="none"></video></div>
+        <div class="solution-card-overlay"></div>
+        <div class="solution-card-content">
+          <h3 class="solution-card-title">Digital Marketing</h3>
+          <p class="solution-card-desc">SEO, social media, content and local citations fully managed so you rank higher and get found first by the customers who matter most.</p>
+          <a href="contact.html" class="solution-card-link">Learn More <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i></a>
+        </div>
+      </article>
+      <article class="solution-card" data-animate data-video-src="https://www.dropbox.com/scl/fi/rq0xp5q902yw0zvgwsggn/dashboard.mp4?rlkey=63ga1be6ltwrl636hzn8lmwe1&st=ea0k5s21&dl=1">
+        <div class="solution-card-video-container"><video autoplay muted loop playsinline preload="none"></video></div>
+        <div class="solution-card-overlay"></div>
+        <div class="solution-card-content">
+          <h3 class="solution-card-title">Agency Partner Program</h3>
+          <p class="solution-card-desc">White-label AI platform built for agencies. We fulfill and you sell. Unlimited sub-accounts under your brand with full support.</p>
+          <a href="contact.html" class="solution-card-link">Learn More <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i></a>
+        </div>
+      </article>
+    </div>
+  </section>
+  
+  <!-- Industry Selector Section -->
+  <section class="industries" id="industries" data-animate>
+    <video class="industries-video" autoplay muted loop playsinline preload="none">
+      <source src="https://www.dropbox.com/scl/fi/oiq3ugvt9ewb4todpyibh/upscaled-video.mp4?rlkey=hehyefujtdgviikmu0wordn6n&st=99u0t1qp&dl=1" type="video/mp4">
+    </video>
+    <div class="industries-overlay"></div>
+    
+    <p class="section-label">Who We Serve</p>
+    <h2 class="section-headline">Pick your trade</h2>
+    <p class="section-subline">We work with local service businesses across every major trade and profession.</p>
+    
+    <div class="industries-grid">
+      <div class="industry-card" data-animate onclick="window.location.href='contact.html'" style="background-image: url('https://www.dropbox.com/scl/fi/rnp4iobvzrpy8zsri5l68/plumbi.jpg?rlkey=lq7n99gowzis1k5f7mghviw5i&st=vxnmuq5j&dl=1');">
+        <div class="industry-card-overlay"></div>
+        <div class="industry-card-content">
+          <div class="industry-icon"><i data-lucide="wrench" style="width: 24px; height: 24px;"></i></div>
+          <h3 class="industry-name">Plumbing</h3>
+          <p class="industry-outcome">Book more jobs and miss zero calls after hours</p>
+        </div>
+      </div>
+      
+      <div class="industry-card" data-animate onclick="window.location.href='contact.html'" style="background-image: url('https://www.dropbox.com/scl/fi/tdi7wi3048olko1bvvthp/hvac.jpg?rlkey=vj4vrij7uz7a3r63aye2jlwd1&st=mjpny44l&dl=1');">
+        <div class="industry-card-overlay"></div>
+        <div class="industry-card-content">
+          <div class="industry-icon"><i data-lucide="wind" style="width: 24px; height: 24px;"></i></div>
+          <h3 class="industry-name">HVAC</h3>
+          <p class="industry-outcome">Fill your schedule day and night all year round</p>
+        </div>
+      </div>
+      
+      <div class="industry-card" data-animate onclick="window.location.href='contact.html'" style="background-image: url('https://www.dropbox.com/scl/fi/oxm3exwsi7ezkknzkv483/pest.jpg?rlkey=52wibo35a4qtte9p0mauawp2p&st=1dau78bh&dl=1');">
+        <div class="industry-card-overlay"></div>
+        <div class="industry-card-content">
+          <div class="industry-icon"><i data-lucide="bug" style="width: 24px; height: 24px;"></i></div>
+          <h3 class="industry-name">Pest Control</h3>
+          <p class="industry-outcome">Capture every seasonal lead before competitors</p>
+        </div>
+      </div>
+      
+      <div class="industry-card" data-animate onclick="window.location.href='contact.html'" style="background-image: url('https://www.dropbox.com/scl/fi/6sdrdgpfth1h47ssod229/elec.jpg?rlkey=n1bzqb0cbcos0tl4sn2s1isbk&st=k938xxjz&dl=1');">
+        <div class="industry-card-overlay"></div>
+        <div class="industry-card-content">
+          <div class="industry-icon"><i data-lucide="zap" style="width: 24px; height: 24px;"></i></div>
+          <h3 class="industry-name">Electrical</h3>
+          <p class="industry-outcome">Never lose a job to a missed call again</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="industries-grid-row2">
+      <div class="industry-card" data-animate onclick="window.location.href='contact.html'" style="background-image: url('https://www.dropbox.com/scl/fi/jxsvx0mx45garltk8gjq9/persona.jpg?rlkey=9hme8hfe3hbpa90ruy2hdriiy&st=kmzitkac&dl=1');">
+        <div class="industry-card-overlay"></div>
+        <div class="industry-card-content">
+          <div class="industry-icon"><i data-lucide="gavel" style="width: 24px; height: 24px;"></i></div>
+          <h3 class="industry-name">Personal Injury</h3>
+          <p class="industry-outcome">Win more cases with faster lead response</p>
+        </div>
+      </div>
+      
+      <div class="industry-card" data-animate onclick="window.location.href='contact.html'" style="background-image: url('https://www.dropbox.com/scl/fi/wdvux93uc0z492hwn4xqm/roofi.jpg?rlkey=bc8bsjcta9jbu6qruddqe42o9&st=b2zq8vyp&dl=1');">
+        <div class="industry-card-overlay"></div>
+        <div class="industry-card-content">
+          <div class="industry-icon"><i data-lucide="home" style="width: 24px; height: 24px;"></i></div>
+          <h3 class="industry-name">Roofing</h3>
+          <p class="industry-outcome">Book storm jobs before your competitors answer</p>
+        </div>
+      </div>
+      
+      <div class="industry-card" data-animate onclick="window.location.href='contact.html'" style="background-image: url('https://www.dropbox.com/scl/fi/kqdacucxr2p7265vcqunb/land.jpg?rlkey=p0nhnqr1gr16bmag2nm6thicg&st=o0rchqs2&dl=1');">
+        <div class="industry-card-overlay"></div>
+        <div class="industry-card-content">
+          <div class="industry-icon"><i data-lucide="leaf" style="width: 24px; height: 24px;"></i></div>
+          <h3 class="industry-name">Landscaping</h3>
+          <p class="industry-outcome">Keep your schedule full every single week</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Certification Badges Section -->
+  <section class="cert-badges-section">
+    <div class="cert-badges-inner">
+      <div class="cert-badge-item">
+        <img src="https://www.dropbox.com/scl/fi/jnh1p4x4r50s6uiad3gjy/soc.jpg?rlkey=kf6eb8zoe44hax5ijns5byj1r&st=b96mikmp&dl=1" alt="SOC 2 Type II Certified" class="cert-badge-img" loading="lazy">
+        <p class="cert-badge-caption">SOC 2 Type II Certified</p>
+      </div>
+      <div class="cert-badge-item">
+        <img src="https://www.dropbox.com/scl/fi/5u6p64q0pi6zzi9snk47b/aws.jpg?rlkey=dcdhnmi1io6ass2lauysms9w5&st=fzpcote0&dl=1" alt="AWS Hosted Infrastructure" class="cert-badge-img" loading="lazy">
+        <p class="cert-badge-caption">AWS Hosted Infrastructure</p>
+      </div>
+      <div class="cert-badge-item">
+        <img src="https://www.dropbox.com/scl/fi/28kk3aawu26aatre5199d/gdpr.jpg?rlkey=gvw7pdfyi96oflb9c76q4oocp&st=dvmfo8gr&dl=1" alt="GDPR Compliant" class="cert-badge-img" loading="lazy">
+        <p class="cert-badge-caption">GDPR Compliant</p>
+      </div>
+      <div class="cert-badge-item">
+        <img src="https://www.dropbox.com/scl/fi/dvtwweug6r98pug7c267j/OIP-1242923337.jpg?rlkey=8ynj2lijq1r0on1myz8kpuy80&st=nhx14u04&dl=1" alt="EU-US Data Privacy Framework" class="cert-badge-img" loading="lazy">
+        <p class="cert-badge-caption">EU-US Data Privacy Framework</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Phone Mockup Section -->
+  <section class="phone-section" id="phone" data-animate>
+    <div class="phone-container">
+      <div class="phone-content">
+        <h2 class="section-headline">See your AI Employee in action</h2>
+        <p class="section-subline">Every call answered. Every lead captured. Every job booked. While you focus on doing the work you love.</p>
+        
+        <ul class="bullet-list">
+          <li class="bullet-item">
+            <i data-lucide="check" class="bullet-icon" style="width: 20px; height: 20px;"></i>
+            <span>Responds in under 10 seconds</span>
+          </li>
+          <li class="bullet-item">
+            <i data-lucide="check" class="bullet-icon" style="width: 20px; height: 20px;"></i>
+            <span>Works 24/7 on calls, texts, DMs and web chat</span>
+          </li>
+          <li class="bullet-item">
+            <i data-lucide="check" class="bullet-icon" style="width: 20px; height: 20px;"></i>
+            <span>Books jobs directly into your calendar</span>
+          </li>
+        </ul>
+        
+        <a href="contact.html" class="btn-gradient">Book Your Free Strategy Call</a>
+      </div>
+      
+      <div class="phone-mockup">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="chat-container" id="chatContainer">
+              <!-- Chat bubbles will be animated via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Calendar Section -->
+  <section class="calendar" id="calendar" data-animate>
+    <p class="section-label">Get Started</p>
+    <h2 class="section-headline">Book Your Free Strategy Call</h2>
+    <p class="section-subline">15 minutes. No pressure. We'll show you exactly how Calyvon AI grows your specific business.</p>
+    
+    <div class="calendar-card">
+      <iframe src="https://api.leadconnectorhq.com/widget/booking/ir3I2EdgEO0jIqRL70WT" style="width:100%;border:none;overflow:hidden;" scrolling="no" id="ir3I2EdgEO0jIqRL70WT_1774279379077"></iframe>
+    </div>
+    <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+  </section>
+  <!-- Final CTA Section -->
+  <section class="final-cta" id="finalCta" data-animate>
+    <h2 class="final-cta-headline">Every local business deserves to grow.<br>Let's make it happen.</h2>
+    <a href="contact.html" class="btn-gradient btn-gradient-large">Book Your Free Strategy Call</a>
+    <div class="final-cta-features">
+      <span>No contracts</span>
+      <span>90-day money back guarantee</span>
+      <span>Live in 48 hours</span>
+      <span>Cancel anytime</span>
+    </div>
+    <a href="tel:+17696001145" class="final-cta-phone">+1 769-600-1145</a>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/6943ff695b256b9571a1eb3a.svg" alt="Calyvon AI Logo" class="footer-logo" loading="lazy">
+        <p class="footer-tagline">AI-powered growth for local service businesses</p>
+        <p class="footer-copyright">Copyright 2026 Calyvon AI<br>All rights reserved</p>
+      </div>
+      
+      <div class="footer-column">
+        <h4 class="footer-column-title">Solutions</h4>
+        <ul class="footer-links">
+          <li><a href="https://aiemployee.calyvonai.com/24-7-ai-lead-management-local-business">AI Employee</a></li>
+          <li><a href="#placeholder">Digital Marketing</a></li>
+          <li><a href="#placeholder">White Label</a></li>
+          <li><a href="contact.html">Book a Call</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h4 class="footer-column-title">Industries</h4>
+        <ul class="footer-links">
+          <li><a href="contact.html">Plumbing</a></li>
+          <li><a href="contact.html">HVAC</a></li>
+          <li><a href="contact.html">Pest Control</a></li>
+          <li><a href="contact.html">Electrical</a></li>
+          <li><a href="contact.html">Personal Injury</a></li>
+          <li><a href="contact.html">Roofing</a></li>
+          <li><a href="contact.html">Landscaping</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h4 class="footer-column-title">Contact</h4>
+        <ul class="footer-links">
+          <li>30 North Gould Street</li>
+          <li>Sheridan Wyoming 82801</li>
+          <li><a href="tel:+17696001145">+1 769-600-1145</a></li>
+          <li><a href="mailto:info@calyvonai.com">info@calyvonai.com</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p class="footer-bottom-text">Copyright 2026 Calyvon AI</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Exit Popup -->
+  <div class="exit-popup" id="exitPopup">
+    <div class="exit-popup-card">
+      <button class="exit-popup-close" id="exitPopupClose" aria-label="Close popup">
+        <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+      </button>
+      <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/6943ff695b256b9571a1eb3a.svg" alt="Calyvon AI Logo" class="exit-popup-logo" loading="lazy">
+      <h3 class="exit-popup-headline">Get Your $497 Setup Fee Waived</h3>
+      <p class="exit-popup-text">Book a free strategy call before <span class="exit-popup-deadline" id="deadlineDate"></span> and we'll waive your entire $497 setup fee. Your AI Employee fully configured, connected and ready to book jobs at zero setup cost.</p>
+      <a href="contact.html" class="btn-gradient" id="exitPopupCta">Claim Free Setup — Book Now</a>
+      <p class="exit-popup-note">Offer expires end of month. No credit card required.</p>
+    </div>
+  </div>
+  
+  <!-- Mobile Sticky Bar -->
+  <div class="mobile-sticky-bar" id="mobileStickyBar">
+    <a href="contact.html" class="btn-gradient">Book Free Strategy Call · +1 769-600-1145</a>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+    
+    // ── Navbar ──────────────────────────────────────────────────────────────
+    const navbar   = document.getElementById('navbar');
+    const hero     = document.getElementById('hero');
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    // Scroll: transparent over hero, solid once past it
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        navbar.classList.toggle('transparent', entry.isIntersecting);
+        navbar.classList.toggle('scrolled', !entry.isIntersecting);
+      });
+    }, { threshold: 0.1 });
+    heroObserver.observe(hero);
+
+    // Dark-mode toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const THEME_KEY   = 'calyvon_theme';
+    const applyTheme  = (dark) => {
+      document.body.classList.toggle('dark-mode', dark);
+      themeToggle.setAttribute('aria-pressed', dark);
+      localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light');
+    };
+    // Restore saved preference
+    applyTheme(localStorage.getItem(THEME_KEY) === 'dark');
+    themeToggle.addEventListener('click', () => {
+      applyTheme(!document.body.classList.contains('dark-mode'));
+    });
+
+    // Desktop dropdowns
+    const dropdownItems = document.querySelectorAll('.nav-item.has-dropdown');
+    dropdownItems.forEach(item => {
+      const btn      = item.querySelector('.nav-link-btn');
+      const dropdown = item.querySelector('.nav-dropdown');
+      let leaveTimer;
+
+      const openDrop  = () => {
+        clearTimeout(leaveTimer);
+        // close others
+        dropdownItems.forEach(other => {
+          if (other !== item) {
+            other.querySelector('.nav-dropdown').classList.remove('open');
+            other.querySelector('.nav-link-btn').setAttribute('aria-expanded', 'false');
+          }
+        });
+        dropdown.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        navbar.classList.add('menu-open');
+      };
+      const closeDrop = () => {
+        leaveTimer = setTimeout(() => {
+          dropdown.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          if (!document.querySelector('.nav-dropdown.open')) navbar.classList.remove('menu-open');
+        }, 120);
+      };
+
+      item.addEventListener('mouseenter', openDrop);
+      item.addEventListener('mouseleave', closeDrop);
+      btn.addEventListener('click', () => {
+        dropdown.classList.contains('open') ? closeDrop() : openDrop();
+      });
+    });
+
+    // Close all dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-item.has-dropdown')) {
+        dropdownItems.forEach(item => {
+          item.querySelector('.nav-dropdown').classList.remove('open');
+          item.querySelector('.nav-link-btn').setAttribute('aria-expanded', 'false');
+        });
+        navbar.classList.remove('menu-open');
+      }
+    });
+
+    // Mobile hamburger
+    hamburger.addEventListener('click', () => {
+      const open = !mobileMenu.classList.contains('open');
+      mobileMenu.classList.toggle('open', open);
+      hamburger.classList.toggle('active', open);
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+    });
+
+    // Mobile accordion
+    document.querySelectorAll('.mobile-accordion-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.dataset.target;
+        const content  = document.getElementById(targetId);
+        const isOpen   = content.classList.contains('open');
+        // collapse all
+        document.querySelectorAll('.mobile-accordion-content').forEach(el => el.classList.remove('open'));
+        document.querySelectorAll('.mobile-accordion-btn').forEach(b => b.classList.remove('active'));
+        if (!isOpen) {
+          content.classList.add('open');
+          btn.classList.add('active');
+        }
+      });
+    });
+
+    // FAQ nav link — close resources dropdown then smooth-scroll to #faq
+    const faqNavLink = document.getElementById('faq-nav-link');
+    if (faqNavLink) {
+      faqNavLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const resourcesDropdown = document.getElementById('resourcesDropdown');
+        const resourcesBtn = document.getElementById('resourcesBtn');
+        if (resourcesDropdown) resourcesDropdown.classList.remove('open');
+        if (resourcesBtn) resourcesBtn.setAttribute('aria-expanded', 'false');
+        const faqSection = document.getElementById('faq');
+        if (faqSection) faqSection.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+
+    // Close mobile menu when any link inside is tapped
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      });
+    });
+    
+    // Rotating text animation
+    const rotatingWords = document.querySelectorAll('.rotating-word');
+    let currentWord = 0;
+    
+    setInterval(() => {
+      rotatingWords[currentWord].classList.remove('active');
+      currentWord = (currentWord + 1) % rotatingWords.length;
+      rotatingWords[currentWord].classList.add('active');
+    }, 2500);
+    
+    // Stats counter animation
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = entry.target;
+          const countValue = target.dataset.count;
+          
+          if (countValue.includes('-')) {
+            target.textContent = countValue;
+          } else if (countValue === '10') {
+            animateCounter(target, 0, 10, 1000, ' sec');
+          } else {
+            animateCounter(target, 0, parseInt(countValue), 1500, 'x');
+          }
+          
+          counterObserver.unobserve(target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    statNumbers.forEach(stat => counterObserver.observe(stat));
+    
+    function animateCounter(element, start, end, duration, suffix = '') {
+      const range = end - start;
+      const increment = end > start ? 1 : -1;
+      const stepTime = Math.abs(Math.floor(duration / range));
+      let current = start;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        element.textContent = current + suffix;
+        if (current === end) {
+          clearInterval(timer);
+        }
+      }, stepTime);
+    }
+    
+    // Phone chat animation
+    const chatContainer = document.getElementById('chatContainer');
+    const chatMessages = [
+      { type: 'customer', text: 'Hi, I need a plumber for a burst pipe, can someone come today?', avatar: 'JD' },
+      { type: 'ai', text: 'Hi there! Yes, we can help right away. Can I get your address and best time?' },
+      { type: 'customer', text: '123 Main Street, anytime this afternoon works.', avatar: 'JD' },
+      { type: 'ai', text: 'Perfect! I have booked you for 2pm today. You\'ll get a confirmation text.' },
+      { type: 'customer', text: 'That was so fast, thank you!', avatar: 'JD' },
+      { type: 'ai', text: 'You\'re welcome! See you at 2pm. Is there anything else I can help with?' }
+    ];
+    
+    function addChatBubble(message, delay) {
+      setTimeout(() => {
+        if (message.type === 'ai') {
+          const typingIndicator = document.createElement('div');
+          typingIndicator.className = 'typing-indicator active';
+          typingIndicator.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
+          chatContainer.appendChild(typingIndicator);
+          
+          setTimeout(() => {
+            typingIndicator.remove();
+            const bubble = document.createElement('div');
+            bubble.className = 'chat-bubble ai';
+            bubble.textContent = message.text;
+            chatContainer.appendChild(bubble);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+          }, 1000);
+        } else {
+          const bubble = document.createElement('div');
+          bubble.className = 'chat-bubble customer';
+          bubble.innerHTML = `<div class="chat-avatar">${message.avatar}</div><span>${message.text}</span>`;
+          chatContainer.appendChild(bubble);
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+      }, delay);
+    }
+    
+    function runChatAnimation() {
+      chatContainer.innerHTML = '';
+      chatMessages.forEach((msg, index) => {
+        addChatBubble(msg, index * 2000);
+      });
+    }
+    
+    runChatAnimation();
+    setInterval(runChatAnimation, 15000);
+    
+    // Video lazy loading for solution cards
+    const solutionCards = document.querySelectorAll('.solution-card');
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const videoSrc = card.dataset.videoSrc;
+          const video = card.querySelector('video');
+          if (videoSrc && video && !video.querySelector('source')) {
+            const source = document.createElement('source');
+            source.src = videoSrc;
+            source.type = 'video/mp4';
+            video.appendChild(source);
+            video.load();
+          }
+          videoObserver.unobserve(card);
+        }
+      });
+    }, { threshold: 0.15 });
+    solutionCards.forEach(card => videoObserver.observe(card));
+
+    // Scroll animations
+    const animateElements = document.querySelectorAll('[data-animate]');
+    
+    const animateObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          animateObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    
+    animateElements.forEach(el => animateObserver.observe(el));
+    
+    // Scroll progress bar
+    const scrollProgress = document.getElementById('scrollProgress');
+    
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      scrollProgress.style.width = scrollPercent + '%';
+    });
+    
+    // Exit popup
+    const exitPopup = document.getElementById('exitPopup');
+    const exitPopupClose = document.getElementById('exitPopupClose');
+    const exitPopupCta = document.getElementById('exitPopupCta');
+    const deadlineDate = document.getElementById('deadlineDate');
+    
+    const now = new Date();
+    const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    deadlineDate.textContent = `${monthNames[lastDay.getMonth()]} ${lastDay.getDate()}, ${lastDay.getFullYear()}`;
+    
+    let popupShown = localStorage.getItem('calyvon_popup_shown') === 'true';
+    let mobilePopupTimer = null;
+    
+    document.addEventListener('mouseleave', (e) => {
+      if (e.clientY < 10 && !popupShown && window.innerWidth > 768) {
+        showExitPopup();
+      }
+    });
+    
+    let lastScrollTime = Date.now();
+    
+    window.addEventListener('scroll', () => {
+      lastScrollTime = Date.now();
+    });
+    
+    function checkMobilePopup() {
+      if (window.innerWidth <= 768 && !popupShown) {
+        const timeSinceScroll = Date.now() - lastScrollTime;
+        if (timeSinceScroll > 45000) {
+          showExitPopup();
+        }
+      }
+    }
+    
+    mobilePopupTimer = setInterval(checkMobilePopup, 5000);
+    
+    function showExitPopup() {
+      exitPopup.classList.add('show');
+      popupShown = true;
+      localStorage.setItem('calyvon_popup_shown', 'true');
+      clearInterval(mobilePopupTimer);
+    }
+    
+    exitPopupClose.addEventListener('click', () => {
+      exitPopup.classList.remove('show');
+    });
+    
+    exitPopupCta.addEventListener('click', () => {
+      exitPopup.classList.remove('show');
+      window.location.href = 'contact.html';
+    });
+    
+    exitPopup.addEventListener('click', (e) => {
+      if (e.target === exitPopup) {
+        exitPopup.classList.remove('show');
+      }
+    });
+    
+    // Mobile sticky bar
+    const mobileStickyBar = document.getElementById('mobileStickyBar');
+    const calendar = document.getElementById('calendar');
+    
+    const stickyBarObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.target === hero) {
+          if (entry.isIntersecting) {
+            mobileStickyBar.classList.remove('show');
+          } else {
+            mobileStickyBar.classList.add('show');
+          }
+        }
+        if (entry.target === calendar) {
+          if (entry.isIntersecting) {
+            mobileStickyBar.classList.remove('show');
+          } else if (!hero.getBoundingClientRect().top > 0) {
+            mobileStickyBar.classList.add('show');
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    stickyBarObserver.observe(hero);
+    stickyBarObserver.observe(calendar);
+  </script>
+</body>
+</html>
