@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Card 1 Test — Calyvon AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #050A18;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── CARD ── */
+    .card {
+      width: 380px;
+      height: 480px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #0F2444 0%, #1a3a6e 100%);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    /* dark gradient overlay */
+    .card-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(to bottom, rgba(10,15,46,0.2) 0%, rgba(10,15,46,0.88) 60%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* everything above overlay */
+    .card-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ── SEARCH MOCKUP ── */
+    .search-mockup {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 88%;
+      z-index: 2;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    /* search bar row */
+    .search-bar {
+      background: #F8F9FA;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #E8EAED;
+    }
+
+    /* Google G logo */
+    .google-g {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .search-text {
+      font-size: 12px;
+      color: #333;
+      font-weight: 500;
+      flex: 1;
+    }
+
+    .search-icon {
+      flex-shrink: 0;
+    }
+
+    /* results container — clip for slide animation */
+    .results-clip {
+      overflow: hidden;
+      /* enough height to show 3 results */
+      max-height: 220px;
+    }
+
+    .results-track {
+      position: relative;
+    }
+
+    /* individual result row */
+    .result-row {
+      padding: 10px 14px;
+      border-bottom: 1px solid #F0F0F0;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      background: #fff;
+      transition: background 0.3s;
+    }
+    .result-row:last-child { border-bottom: none; }
+
+    /* position badge */
+    .pos-badge {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #E8F5E9;
+      font-size: 10px;
+      font-weight: 800;
+      color: #1B5E20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: background 0.4s, box-shadow 0.4s, transform 0.2s;
+    }
+    .pos-badge.dim {
+      background: #F0F0F0;
+      color: #999;
+    }
+
+    /* result text area */
+    .result-info { flex: 1; min-width: 0; }
+    .result-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1A0DAB;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .result-url {
+      font-size: 10px;
+      color: #0F9D58;
+      margin-top: 1px;
+    }
+    .result-desc {
+      font-size: 10px;
+      color: #666;
+      margin-top: 2px;
+    }
+    .result-title.dim { color: #888; }
+    .result-url.dim   { color: #aaa; }
+    .result-desc.dim  { color: #bbb; }
+
+    /* stars row */
+    .stars-row {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      margin-top: 3px;
+    }
+    .stars-display {
+      display: flex;
+      gap: 1px;
+    }
+    .star {
+      font-size: 10px;
+      color: #ccc;
+      transition: color 0.05s;
+    }
+    .star.gold { color: #FBBC04; }
+    .rating-text {
+      font-size: 10px;
+      color: #666;
+    }
+
+    /* ── CARD BOTTOM TEXT ── */
+    .card-bottom {
+      position: absolute;
+      bottom: 28px;
+      left: 28px;
+      right: 28px;
+      z-index: 2;
+    }
+    .card-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+
+    /* ── CALYVON LOGO WATERMARK ── */
+    .card-logo {
+      position: absolute;
+      bottom: 28px;
+      right: 28px;
+      z-index: 3;
+      width: 32px;
+      height: auto;
+      opacity: 0.4;
+      filter: brightness(0) invert(1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="outcomeCard">
+    <div class="card-overlay"></div>
+
+    <div class="card-content">
+
+      <!-- Google Search Mockup -->
+      <div class="search-mockup">
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+          <!-- Google G SVG -->
+          <svg class="google-g" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+
+          <span class="search-text">personal injury firm near me</span>
+
+          <!-- Magnifying glass -->
+          <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+
+        <!-- Results -->
+        <div class="results-clip">
+          <div class="results-track" id="resultsTrack">
+
+            <!-- Result 1 — animated -->
+            <div class="result-row" id="result1">
+              <div class="pos-badge" id="posBadge">8</div>
+              <div class="result-info">
+                <div class="result-title">Tony and Associates Law Firm</div>
+                <div class="result-url">tonyandassociates.com · Personal Injury</div>
+                <div class="result-desc">24/7 availability. No fees unless you win.</div>
+                <div class="stars-row">
+                  <div class="stars-display" id="starsDisplay">
+                    <span class="star" id="s1">★</span>
+                    <span class="star" id="s2">★</span>
+                    <span class="star" id="s3">★</span>
+                    <span class="star" id="s4">★</span>
+                    <span class="star" id="s5">★</span>
+                  </div>
+                  <span class="rating-text" id="ratingText">(<span id="reviewCount">12</span> reviews) &nbsp;<span id="ratingVal" style="color:#999">1.0</span></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Result 2 — static dim -->
+            <div class="result-row" id="result2">
+              <div class="pos-badge dim">2</div>
+              <div class="result-info">
+                <div class="result-title dim">Smith Legal Group</div>
+                <div class="result-url dim">smithlegal.com · Injury Law</div>
+                <div class="result-desc dim">Experienced attorneys fighting for you.</div>
+              </div>
+            </div>
+
+            <!-- Result 3 — static dim -->
+            <div class="result-row" id="result3">
+              <div class="pos-badge dim">3</div>
+              <div class="result-info">
+                <div class="result-title dim">Metro Injury Attorneys</div>
+                <div class="result-url dim">metroinjury.com · Personal Injury</div>
+                <div class="result-desc dim">Local lawyers. Fast results.</div>
+              </div>
+            </div>
+
+          </div><!-- /results-track -->
+        </div><!-- /results-clip -->
+
+      </div><!-- /search-mockup -->
+
+      <!-- Bottom text -->
+      <div class="card-bottom">
+        <div class="card-title">You Show Up First</div>
+        <div class="card-desc">More 5-star reviews. Higher search rankings. Customers find you before they find anyone else.</div>
+      </div>
+
+      <!-- Calyvon AI logo watermark -->
+      <img
+        class="card-logo"
+        src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/6943ff695b256b9571a1eb3a.svg"
+        alt="Calyvon AI"
+      />
+
+    </div><!-- /card-content -->
+  </div><!-- /card -->
+
+  <script>
+    // ── helpers ──────────────────────────────────────────────────────────────
+    const el = id => document.getElementById(id);
+
+    const stars      = [el('s1'), el('s2'), el('s3'), el('s4'), el('s5')];
+    const posBadge   = el('posBadge');
+    const ratingVal  = el('ratingVal');
+    const reviewCount= el('reviewCount');
+    const result1    = el('result1');
+    const result2    = el('result2');
+    const result3    = el('result3');
+
+    // result heights for the slide calculation
+    const ROW_H = 72; // approximate px per result row
+
+    // ── animation state ──────────────────────────────────────────────────────
+    let loopTimer  = null;
+    let rafHandle  = null;
+    let running    = false;
+
+    // ── reset to initial state ───────────────────────────────────────────────
+    function resetState(instant) {
+      const dur = instant ? '0s' : '0.5s';
+
+      // stars — all gray
+      stars.forEach(s => s.classList.remove('gold'));
+      ratingVal.textContent = '1.0';
+      ratingVal.style.color = '#999';
+      reviewCount.textContent = '12';
+
+      // result1 back to bottom (position 3 visually = translateY of 2 rows down)
+      result1.style.transition = instant ? 'none' : `transform ${dur} ease`;
+      result1.style.transform  = `translateY(${ROW_H * 2}px)`;
+      result2.style.transition = instant ? 'none' : `transform ${dur} ease`;
+      result2.style.transform  = 'translateY(0)';
+      result3.style.transition = instant ? 'none' : `transform ${dur} ease`;
+      result3.style.transform  = 'translateY(0)';
+
+      // badge back to 8 / green-ish dim
+      posBadge.textContent        = '8';
+      posBadge.style.background   = '#E8F5E9';
+      posBadge.style.color        = '#1B5E20';
+      posBadge.style.boxShadow    = 'none';
+      posBadge.style.transform    = 'scale(1)';
+    }
+
+    // ── star fill helper ─────────────────────────────────────────────────────
+    function updateStars(rating) {
+      // rating 1.0 – 5.0
+      stars.forEach((s, i) => {
+        const threshold = i + 1; // star i+1 fills when rating >= i+1
+        if (rating >= threshold) {
+          s.classList.add('gold');
+        } else if (rating >= threshold - 0.5) {
+          s.classList.add('gold'); // half-fill: just show gold for simplicity
+        } else {
+          s.classList.remove('gold');
+        }
+      });
+    }
+
+    // ── main animation loop ──────────────────────────────────────────────────
+    function runCycle() {
+      if (!running) return;
+
+      const CYCLE = 6000;
+
+      // ── Phase 1: 0 – 2000ms  (stars + reviews) ───────────────────────────
+      const phase1Start = performance.now();
+      const phase1Dur   = 2000;
+      const startRating = 1.0, endRating = 4.7;
+      const startReview = 12,  endReview = 289;
+
+      function animPhase1(now) {
+        if (!running) return;
+        const t = Math.min((now - phase1Start) / phase1Dur, 1);
+        const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t; // ease-in-out
+
+        const r = startRating + (endRating - startRating) * ease;
+        ratingVal.textContent = r.toFixed(1);
+        ratingVal.style.color = r > 3 ? '#FBBC04' : '#999';
+        reviewCount.textContent = Math.round(startReview + (endReview - startReview) * ease);
+        updateStars(r);
+
+        if (t < 1) {
+          rafHandle = requestAnimationFrame(animPhase1);
+        } else {
+          // Phase 1 done — kick off Phase 2 at 2200ms
+          loopTimer = setTimeout(startPhase2, 200);
+        }
+      }
+      rafHandle = requestAnimationFrame(animPhase1);
+
+      // ── Phase 2: slide result1 to top ────────────────────────────────────
+      function startPhase2() {
+        if (!running) return;
+        const slideDur = 1000; // ms
+
+        // result1 needs to go from translateY(2*ROW_H) to translateY(0)
+        // result2 & result3 shift down by 1 row
+        result1.style.transition = `transform ${slideDur}ms cubic-bezier(0.34,1.56,0.64,1)`;
+        result1.style.transform  = 'translateY(0)';
+
+        result2.style.transition = `transform ${slideDur}ms ease`;
+        result2.style.transform  = `translateY(${ROW_H}px)`;
+
+        result3.style.transition = `transform ${slideDur}ms ease`;
+        result3.style.transform  = `translateY(${ROW_H}px)`;
+
+        // badge: green glow + number flip at midpoint
+        setTimeout(() => {
+          if (!running) return;
+          posBadge.style.boxShadow = '0 0 8px rgba(27,94,32,0.7)';
+          posBadge.style.background = '#C8E6C9';
+          posBadge.style.transform = 'scale(1.3)';
+          setTimeout(() => {
+            if (!running) return;
+            posBadge.textContent = '1';
+            posBadge.style.background = '#1B5E20';
+            posBadge.style.color = '#fff';
+            posBadge.style.transform = 'scale(1)';
+          }, 200);
+        }, slideDur / 2);
+
+        // Phase 3: hold at 3200ms (2200 + 1000)
+        loopTimer = setTimeout(startPhase3, slideDur);
+      }
+
+      // ── Phase 3: hold 3200 – 5500ms ──────────────────────────────────────
+      function startPhase3() {
+        if (!running) return;
+        // show ↑ arrow next to badge number
+        posBadge.innerHTML = '↑1';
+        posBadge.style.fontSize = '8px';
+        posBadge.style.letterSpacing = '-0.5px';
+
+        loopTimer = setTimeout(startPhase4, 2300);
+      }
+
+      // ── Phase 4: fade to reset 5500 – 6000ms ─────────────────────────────
+      function startPhase4() {
+        if (!running) return;
+        resetState(false);
+        // after fade completes, loop again
+        loopTimer = setTimeout(() => {
+          if (!running) return;
+          // hard-snap to start then run again
+          resetState(true);
+          // tiny delay so the instant reset paints before next cycle
+          requestAnimationFrame(() => requestAnimationFrame(() => runCycle()));
+        }, 500);
+      }
+    }
+
+    // ── IntersectionObserver ─────────────────────────────────────────────────
+    function startAnimation() {
+      if (running) return;
+      running = true;
+      resetState(true);
+      // let the reset paint first
+      requestAnimationFrame(() => requestAnimationFrame(() => runCycle()));
+    }
+
+    function stopAnimation() {
+      running = false;
+      if (rafHandle)   { cancelAnimationFrame(rafHandle); rafHandle = null; }
+      if (loopTimer)   { clearTimeout(loopTimer); loopTimer = null; }
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAnimation();
+        } else {
+          stopAnimation();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(el('outcomeCard'));
+  </script>
+</body>
+</html>

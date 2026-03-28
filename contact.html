@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="https://storage.googleapis.com/msgsndr/K0cPgnc4czjA0zpMOest/media/6943ff695b256b9571a1eb3a.svg">
+  <link rel="apple-touch-icon" href="https://storage.googleapis.com/msgsndr/K0cPgnc4czjA0zpMOest/media/6943ff695b256b9571a1eb3a.svg">
   <title>Book Your Free Strategy Call — Calyvon AI</title>
   <meta name="description" content="Book a free 15-minute strategy call with Calyvon AI. We'll show you exactly how our AI-powered growth platform can transform your local service business.">
   <link rel="canonical" href="https://calyvonai.com/contact.html">
@@ -25,7 +27,6 @@
     :root {
       --color-white: #FFFFFF;
       --color-navy: #0F2444;
-      --color-deep-navy: #010648;
       --color-light-gray: #F9FAFB;
       --color-border: #E5E7EB;
       --color-teal: #06B6D4;
@@ -45,119 +46,465 @@
       background: var(--color-white);
       line-height: 1.6;
       overflow-x: hidden;
+      font-size: 16px;
     }
 
-    /* ── Scroll Progress ── */
+    /* Scroll Progress Bar */
     .scroll-progress {
       position: fixed; top: 0; left: 0; height: 3px;
-      background: var(--gradient-primary); width: 0%; z-index: 10000;
+      background: var(--gradient-primary); width: 0%; z-index: 1002;
       transition: width 0.1s ease-out;
     }
 
-    /* ── NAV BASE ── */
+    /* Scroll Animations */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── NAVBAR ── */
     .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: #010648; box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-      transition: box-shadow 0.3s ease;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: linear-gradient(180deg, #040609 0%, #060B14 60%, #080F1A 100%);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.07);
     }
-    .navbar.menu-open { box-shadow: none; }
     .nav-container {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px 0 55px; height: 72px; max-width: 1400px; margin: 0 auto;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
     }
-    .nav-logo-link { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-    .nav-logo-img { height: 53px; width: auto; display: block; }
-    .nav-brand-text { font-size: 20px; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; }
-    .nav-links { display: flex; align-items: center; gap: 8px; }
-    .nav-item { position: relative; }
+    .nav-logo-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-logo-img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+    .nav-brand-text {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: -0.3px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-item {
+      position: relative;
+    }
     .nav-link-btn {
-      display: flex; align-items: center; gap: 6px; background: none; border: none;
-      cursor: pointer; font-size: 15px; font-weight: 500; color: #ffffff;
-      padding: 8px 12px; border-radius: 6px; transition: background 0.2s ease; font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: color 0.15s ease;
+      position: relative;
+      letter-spacing: 0;
     }
-    .nav-link-btn:hover { background: rgba(255,255,255,0.1); }
-    .nav-chevron { transition: transform 0.2s ease; }
-    .nav-item.open .nav-chevron { transform: rotate(180deg); }
+    .nav-link-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 16px;
+      right: 16px;
+      height: 2px;
+      background: #06B6D4;
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+      transform-origin: center;
+    }
+    .nav-link-btn:hover { color: #ffffff; }
+    .nav-item.is-open .nav-link-btn::after { transform: scaleX(1); }
+    .nav-chevron {
+      color: rgba(255,255,255,0.4);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+    .nav-item.is-open .nav-chevron {
+      transform: rotate(180deg);
+    }
+    .nav-link-plain {
+      display: flex;
+      align-items: center;
+      padding: 8px 18px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: color 0.15s ease;
+      position: relative;
+      letter-spacing: -0.1px;
+    }
+    .nav-link-plain::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 16px;
+      right: 16px;
+      height: 2px;
+      background: #06B6D4;
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+      transform-origin: center;
+    }
+    .nav-link-plain:hover { color: #ffffff; }
+    .nav-link-plain:hover::after { transform: scaleX(1); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .nav-phone {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      margin-right: 16px;
+      transition: color 0.15s ease;
+    }
+    .nav-phone:hover { color: #ffffff; }
+    .nav-cta-btn {
+      background: linear-gradient(135deg, #2D7CF6, #1A5FE0);
+      color: #ffffff;
+      padding: 11px 26px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      box-shadow: 0 2px 12px rgba(37,99,235,0.35);
+      letter-spacing: 0.1px;
+    }
+    .nav-cta-btn:hover { background: linear-gradient(135deg, #3D8CF6, #2463E0); box-shadow: 0 4px 20px rgba(37,99,235,0.5); }
+
+    /* Mega-menu dropdowns */
     .nav-dropdown {
-      position: fixed; top: 72px; left: 0; right: 0; width: 100%;
-      background: #010648; border-radius: 0; box-shadow: 0 16px 48px rgba(0,0,0,0.5);
-      opacity: 0; visibility: hidden; transform: translateY(-4px);
-      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease; z-index: 999;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(180deg, #060B18 0%, #081020 100%);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 28px 70px rgba(0,0,0,0.85);
+      padding: 40px 0;
+      z-index: 1001;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
     }
-    .nav-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
-    .mega-inner { max-width: 1400px; margin: 0 auto; padding: 40px 40px 48px 55px; }
+    .nav-item.is-open .nav-dropdown {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .nav-dropdown-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
 
-    /* Who */
-    .who-mega-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0 56px; }
-    .who-mega-col-title { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.12); }
-    .who-mega-link { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500; color: #ffffff; text-decoration: none; padding: 10px 15px; border-radius: 6px; margin: 1px 0; transition: background 0.15s ease; }
-    .who-mega-link svg { opacity: 0.65; flex-shrink: 0; }
-    .who-mega-link:hover { background: rgba(255,255,255,0.07); }
+    /* Who We Serve dropdown */
+    .who-mega-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 320px;
+      gap: 52px;
+      align-items: start;
+    }
+    .who-mega-col { display: flex; flex-direction: column; }
+    .who-col-header {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-drop-item {
+      display: flex;
+      align-items: center;
+      padding: 9px 0;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      gap: 10px;
+    }
+    .nav-drop-item:last-child { border-bottom: none; }
+    .nav-drop-item:hover { padding-left: 6px; }
+    .nav-drop-item:hover .nav-drop-text { color: #ffffff; }
+    .nav-drop-item::before {
+      content: '';
+      width: 4px; height: 4px;
+      background: rgba(6,182,212,0.5);
+      border-radius: 50%;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .nav-drop-item:hover::before { background: #06B6D4; }
+    .nav-drop-text {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.15s ease;
+    }
+    .who-action-col { display: flex; flex-direction: column; gap: 10px; }
+    .who-action-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 22px;
+      background: #0E1B30;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .who-action-card:hover {
+      background: #162540;
+      border-color: rgba(6,182,212,0.4);
+      transform: translateX(3px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+    }
+    .who-action-card-body { display: flex; flex-direction: column; gap: 3px; }
+    .who-action-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.1px;
+    }
+    .who-action-card-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+    }
+    .who-action-card-arrow {
+      color: rgba(255,255,255,0.35);
+      transition: color 0.15s, transform 0.15s;
+      flex-shrink: 0;
+    }
+    .who-action-card:hover .who-action-card-arrow {
+      color: #06B6D4;
+      transform: translateX(3px);
+    }
 
-    /* What */
-    .what-mega-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0 40px; margin-bottom: 28px; }
-    .what-mega-col-title { display: block; font-size: 13px; font-weight: 700; color: #ffffff; text-decoration: none; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.12); transition: color 0.15s ease; }
-    a.what-mega-col-title:hover { color: #00D1C1; }
-    .what-mega-link { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.75); text-decoration: none; padding: 8px 10px; border-radius: 6px; margin: 1px 0; transition: background 0.15s ease, color 0.15s ease; }
-    .what-mega-link:hover { background: rgba(255,255,255,0.05); color: #ffffff; }
-    .what-arrow { color: #00D1C1; font-size: 15px; flex-shrink: 0; margin-left: 6px; }
-    .what-agency-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-    .what-agency-card { display: flex; align-items: center; justify-content: space-between; background: rgba(6,182,212,0.08); border: 1px solid rgba(6,182,212,0.2); border-radius: 10px; padding: 16px 24px; text-decoration: none; transition: background 0.15s ease; }
-    .what-agency-card:hover { background: rgba(6,182,212,0.14); }
-    .what-agency-card-left strong { display: block; font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 3px; }
-    .what-agency-card-left span { font-size: 13px; color: rgba(255,255,255,0.55); }
-    .what-agency-card-right { font-size: 13px; font-weight: 600; color: #00D1C1; white-space: nowrap; }
+    /* What We Do dropdown */
+    .what-drop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .what-drop-card {
+      display: block;
+      padding: 22px 24px;
+      background: #0E1B30;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .what-drop-card:hover {
+      background: #162540;
+      border-color: rgba(6,182,212,0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    .what-drop-card-title {
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: block;
+      letter-spacing: -0.2px;
+    }
+    .what-drop-card-desc {
+      color: #ffffff;
+      font-size: 13px;
+      line-height: 1.6;
+      display: block;
+    }
 
-    /* Resources */
-    .resources-links { display: flex; gap: 8px; }
-    .resources-simple-link { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500; color: #ffffff; text-decoration: none; padding: 10px 16px; border-radius: 8px; transition: background 0.15s ease; }
-    .resources-simple-link svg { opacity: 0.65; flex-shrink: 0; }
-    .resources-simple-link:hover { background: rgba(255,255,255,0.08); }
-
-    /* Right side */
-    .nav-right { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
-    .nav-phone { font-size: 14px; font-weight: 500; color: #ffffff; text-decoration: none; }
-    .nav-phone:hover { color: #06B6D4; }
-    .nav-contact-link { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); text-decoration: none; padding: 7px 16px; border: 1px solid rgba(255,255,255,0.3); border-radius: 100px; transition: color 0.2s ease, border-color 0.2s ease; white-space: nowrap; }
-    .nav-contact-link:hover { color: #ffffff; border-color: rgba(255,255,255,0.6); }
-    .theme-toggle { background: none; border: none; cursor: pointer; color: #ffffff; padding: 6px; border-radius: 6px; display: flex; align-items: center; transition: background 0.2s ease; }
-    .theme-toggle:hover { background: rgba(255,255,255,0.1); }
-    .theme-icon { display: none; }
-    body:not(.dark-mode) .sun-icon { display: block; }
-    body.dark-mode .moon-icon { display: block; }
-    .nav-cta-btn { display: inline-flex; align-items: center; padding: 10px 24px; background: var(--gradient-primary); color: #ffffff; font-size: 14px; font-weight: 600; border-radius: 100px; text-decoration: none; transition: opacity 0.2s ease; white-space: nowrap; }
-    .nav-cta-btn:hover { opacity: 0.9; }
+    /* Insights dropdown */
+    .insights-cards-row {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+    }
+    .insights-card {
+      flex: 0 0 360px;
+      display: block;
+      padding: 24px 32px;
+      background: #0E1B30;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 14px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      min-height: 100px;
+    }
+    .insights-card:hover {
+      background: #162540;
+      border-color: rgba(6,182,212,0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 32px rgba(6,182,212,0.12);
+    }
+    .insights-card-title {
+      color: #ffffff;
+      font-size: 28px;
+      font-weight: 800;
+      display: block;
+      margin-bottom: 10px;
+      letter-spacing: -0.4px;
+    }
+    .insights-card-desc {
+      color: #ffffff;
+      font-size: 15px;
+      display: block;
+      line-height: 1.65;
+    }
 
     /* Hamburger */
-    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: #ffffff; border-radius: 2px; transition: all 0.3s ease; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
     .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
     .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* Mobile Menu */
-    .mobile-menu { display: none; flex-direction: column; background: #010648; padding: 16px 24px 24px; border-top: 1px solid rgba(255,255,255,0.08); max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-    .mobile-menu.open { max-height: 1000px; }
-    .mobile-link { font-size: 16px; font-weight: 500; color: #ffffff; text-decoration: none; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .mobile-accordion-btn { display: flex; align-items: center; justify-content: space-between; width: 100%; background: none; border: none; border-bottom: 1px solid rgba(255,255,255,0.08); cursor: pointer; font-size: 16px; font-weight: 500; color: #ffffff; padding: 14px 0; font-family: inherit; text-align: left; }
-    .mobile-accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 16px; }
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: #0F1535;
+      padding: 16px 24px 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .mobile-menu.open { max-height: 1200px; }
+    .mobile-accordion-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: none;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 600;
+      color: #ffffff;
+      padding: 16px 0;
+      font-family: inherit;
+      text-align: left;
+      min-height: 54px;
+    }
+    .mobile-accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding-left: 8px;
+    }
     .mobile-accordion-content.open { max-height: 900px; }
-    .mobile-sub-category { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 12px 0 4px; margin: 0; }
-    .mobile-sub-link { display: flex; font-size: 14px; color: rgba(255,255,255,0.7); text-decoration: none; padding: 10px 0; }
-    .mobile-cta { display: block; text-align: center; margin-top: 16px; padding: 14px; background: var(--gradient-primary); color: #ffffff; font-size: 16px; font-weight: 600; border-radius: 100px; text-decoration: none; }
-    .sub-chevron { flex-shrink: 0; }
+    .mobile-sub-category {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      padding: 14px 0 6px;
+      margin: 0;
+    }
+    .mobile-sub-link {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 12px 0;
+      min-height: 48px;
+    }
+    .mobile-cta-wrap { margin-top: 16px; }
+    .mobile-cta {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      background: #2563EB;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .mobile-phone-link {
+      display: block;
+      text-align: center;
+      margin-top: 12px;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+    }
 
-    /* Responsive nav */
-    @media (max-width: 1280px) { .mega-inner { padding: 32px 32px 40px; } }
-    @media (max-width: 1024px) {
-      .nav-links { display: none; } .nav-phone { display: none; } .nav-contact-link { display: none; }
-      .hamburger { display: flex; } .mobile-menu { display: flex; } .nav-container { padding: 0 20px; }
-      .nav-dropdown { display: none !important; }
+    /* Navbar responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-phone { display: none; }
+      .nav-cta-btn { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
+      .nav-container { padding: 0 20px; }
     }
 
     /* ── PAGE LAYOUT ── */
     .contact-page {
-      padding-top: 72px;
+      padding-top: 68px;
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 420px;
@@ -173,18 +520,19 @@
     }
     .contact-left-header {
       margin-bottom: 32px;
+      text-align: center;
     }
     .contact-label {
-      font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-      color: var(--color-teal); margin-bottom: 12px;
+      font-size: 16px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--color-teal); margin-bottom: 16px; text-align: center;
     }
     .contact-headline {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(36px, 4vw, 52px); font-weight: 900; line-height: 1.05;
-      color: var(--color-navy); margin-bottom: 10px;
+      font-size: clamp(56px, 5.5vw, 80px); font-weight: 900; line-height: 1.0;
+      color: var(--color-navy); margin-bottom: 14px; text-align: center;
     }
     .contact-subline {
-      font-size: 16px; color: var(--color-secondary-text);
+      font-size: 20px; color: var(--color-secondary-text);
     }
     .calendar-card {
       background: var(--color-white);
@@ -200,7 +548,7 @@
 
     /* Right — Value Panel */
     .contact-right {
-      background: var(--color-deep-navy);
+      background: #050A18;
       padding: 64px 40px;
       display: flex;
       flex-direction: column;
@@ -220,14 +568,14 @@
       margin-bottom: 36px;
     }
     .contact-quote p {
-      font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.72);
+      font-size: 16px; line-height: 1.8; color: #ffffff;
       font-style: italic;
     }
     .contact-outcomes {
       margin-bottom: 40px;
     }
     .contact-outcomes-title {
-      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
       color: rgba(255,255,255,0.4); margin-bottom: 16px;
     }
     .contact-outcome {
@@ -241,7 +589,7 @@
       margin-top: 1px;
     }
     .contact-outcome-icon svg { width: 11px; height: 11px; color: #06B6D4; }
-    .contact-outcome p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+    .contact-outcome p { font-size: 16px; color: #ffffff; line-height: 1.5; }
 
     /* Trust signals */
     .contact-trust {
@@ -277,28 +625,129 @@
       width: 18px; height: 18px; object-fit: contain; border-radius: 3px; opacity: 0.75;
     }
 
+    /* Shared buttons */
+    .btn-gradient {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gradient-primary); color: #ffffff;
+      padding: 14px 32px; border-radius: var(--radius-button);
+      text-decoration: none; font-weight: 600; font-size: 15px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .btn-gradient:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-gradient-large { padding: 16px 40px; font-size: 16px; }
+
+    /* Final CTA Section */
+    .final-cta {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 24px;
+      text-align: center;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .final-cta-video {
+      position: absolute;
+      top: -12%; left: 0;
+      width: 100%; height: 124%;
+      object-fit: cover;
+      object-position: center 25%;
+      z-index: 0;
+    }
+    .final-cta-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.62);
+      z-index: 1;
+    }
+    .final-cta::before,
+    .final-cta::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .final-cta::before {
+      top: 0;
+      height: 90px;
+      background: linear-gradient(to bottom, rgba(6,13,31,0.85) 0%, transparent 100%);
+    }
+    .final-cta::after {
+      bottom: 0;
+      height: 90px;
+      background: linear-gradient(to top, rgba(6,13,31,0.85) 0%, transparent 100%);
+    }
+    .final-cta-content {
+      position: relative;
+      z-index: 3;
+    }
+    .final-cta-headline {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 32px;
+    }
+    .final-cta-features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px 32px;
+      margin-top: 24px;
+      font-size: 15px;
+      color: #ffffff;
+    }
+    .final-cta-phone {
+      display: inline-block;
+      margin-top: 24px;
+      color: #06B6D4;
+      font-size: 18px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    .footer {
+      background: #ffffff;
+      border-top: 1px solid #E5E7EB;
+      padding: 36px 24px 0;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      padding-bottom: 24px;
+    }
+    .footer-logo { width: 140px; height: auto; margin-bottom: 16px; }
+    .footer-tagline { font-size: 15px; color: #6B7280; margin-bottom: 16px; }
+    .footer-copyright { font-size: 14px; color: #6B7280; }
+    .footer-column-title {
+      font-size: 14px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: #0F2444; margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 12px; font-size: 15px; color: #6B7280; }
+    .footer-links a { font-size: 15px; color: #6B7280; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: #0F2444; }
+    .footer-bottom {
+      border-top: 1px solid #E5E7EB;
+      padding: 20px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .footer-bottom-text { font-size: 14px; color: #6B7280; }
+    .footer-bottom-links { display: flex; gap: 24px; }
+    .footer-bottom-links a { font-size: 14px; color: #6B7280; text-decoration: none; }
+    .footer-bottom-links a:hover { color: #0F2444; }
+
     /* Mobile sticky */
     .mobile-sticky-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--color-white); box-shadow: 0 -2px 10px rgba(0,0,0,0.1); padding: 14px 20px; z-index: 999; }
     .mobile-sticky-bar .btn-gradient { width: 100%; justify-content: center; }
-    .btn-gradient { display: inline-flex; align-items: center; gap: 8px; background: var(--gradient-primary); color: #ffffff; padding: 12px 28px; border-radius: var(--radius-button); text-decoration: none; font-weight: 600; font-size: 14px; transition: opacity 0.2s ease; }
-    .btn-gradient:hover { opacity: 0.9; }
-
-    /* Footer */
-    .footer { background: var(--color-navy); padding: 60px 24px 0; }
-    .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; padding-bottom: 40px; }
-    .footer-logo { width: 140px; height: auto; margin-bottom: 16px; filter: brightness(0) invert(1); }
-    .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
-    .footer-copyright { font-size: 13px; color: rgba(255,255,255,0.35); }
-    .footer-column-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #ffffff; margin-bottom: 20px; }
-    .footer-links { list-style: none; }
-    .footer-links li { margin-bottom: 12px; font-size: 14px; color: rgba(255,255,255,0.5); }
-    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: #ffffff; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
-    .footer-bottom-text { font-size: 13px; color: rgba(255,255,255,0.35); }
-    .footer-bottom-links { display: flex; gap: 24px; }
-    .footer-bottom-links a { font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; }
-    .footer-bottom-links a:hover { color: #ffffff; }
 
     @media (max-width: 1024px) {
       .contact-page { grid-template-columns: 1fr; }
@@ -307,9 +756,12 @@
       .footer-container { grid-template-columns: repeat(2,1fr); }
     }
     @media (max-width: 768px) {
+      body { padding-bottom: 70px; }
       .footer-container { grid-template-columns: 1fr; }
       .mobile-sticky-bar { display: block; }
-      body { padding-bottom: 70px; }
+      .contact-page { padding-top: 68px; }
+      .final-cta { min-height: 480px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
     }
   </style>
 </head>
@@ -320,163 +772,211 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-logo-link">
-        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/6943ff695b256b9571a1eb3a.svg" alt="Calyvon AI" class="nav-logo-img" loading="eager">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/6943ff695b256b9571a1eb3a.svg"
+             alt="Calyvon AI" class="nav-logo-img" loading="eager">
         <span class="nav-brand-text">Calyvon AI</span>
       </a>
+
       <div class="nav-links" id="navLinks">
         <!-- Who We Serve -->
-        <div class="nav-item has-dropdown" id="whoItem">
-          <button class="nav-link-btn" id="whoBtn" aria-haspopup="true" aria-expanded="false">
-            Who We Serve <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="nav-item">
+          <button class="nav-link-btn">
+            Who We Serve
+            <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="nav-dropdown who-dropdown" id="whoDropdown" role="menu">
-            <div class="mega-inner">
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-inner">
               <div class="who-mega-grid">
                 <div class="who-mega-col">
-                  <p class="who-mega-col-title">Home Services</p>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Plumbing</a>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>HVAC</a>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Electrical</a>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Roofing</a>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Handyman</a>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>Pool &amp; Spa</a>
+                  <p class="who-col-header">Home Services</p>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Plumbing</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">HVAC</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Pest Control</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Electrical</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Roofing</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Landscaping</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Cleaning Services</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Pool &amp; Spa</span></a>
                 </div>
                 <div class="who-mega-col">
-                  <p class="who-mega-col-title">Legal &amp; Professional</p>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Personal Injury</a>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Family Law</a>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Immigration</a>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Estate &amp; Probate</a>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Financial Advisory</a>
+                  <p class="who-col-header">Legal &amp; Professional</p>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Personal Injury</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Family Law</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Criminal Defense</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Immigration</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Estate &amp; Probate</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Accounting &amp; Tax</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Financial Advisory</span></a>
+                  <a href="contact.html" class="nav-drop-item"><span class="nav-drop-text">Dental &amp; Medical</span></a>
                 </div>
-                <div class="who-mega-col">
-                  <p class="who-mega-col-title">Other Local Businesses</p>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/></svg>Auto Repair</a>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Pet Care &amp; Grooming</a>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Fitness &amp; Wellness</a>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2h18v5H3z"/><path d="M3 7v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7"/></svg>Restaurants</a>
-                  <a href="contact.html" class="who-mega-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>Cleaning Services</a>
+                <div class="who-action-col">
+                  <p class="who-col-header">Get Started By Industry</p>
+                  <a href="contact.html" class="who-action-card">
+                    <div class="who-action-card-body">
+                      <span class="who-action-card-title">Home Services</span>
+                      <span class="who-action-card-sub">HVAC, Plumbing, Trades &amp; more</span>
+                    </div>
+                    <svg class="who-action-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  </a>
+                  <a href="contact.html" class="who-action-card">
+                    <div class="who-action-card-body">
+                      <span class="who-action-card-title">Legal &amp; Professional</span>
+                      <span class="who-action-card-sub">Attorneys, accountants &amp; advisors</span>
+                    </div>
+                    <svg class="who-action-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  </a>
+                  <a href="contact.html" class="who-action-card">
+                    <div class="who-action-card-body">
+                      <span class="who-action-card-title">Other Local Businesses</span>
+                      <span class="who-action-card-sub">Salons, fitness, auto repair &amp; more</span>
+                    </div>
+                    <svg class="who-action-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
         <!-- What We Do -->
-        <div class="nav-item has-dropdown" id="whatItem">
-          <button class="nav-link-btn" id="whatBtn" aria-haspopup="true" aria-expanded="false">
-            What We Do <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="nav-item">
+          <button class="nav-link-btn">
+            What We Do
+            <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="nav-dropdown what-dropdown" id="whatDropdown" role="menu">
-            <div class="mega-inner">
-              <div class="what-mega-grid">
-                <div class="what-mega-col">
-                  <a href="https://aiemployee.calyvonai.com/24-7-ai-lead-management-local-business" class="what-mega-col-title">AI Employee</a>
-                  <a href="contact.html" class="what-mega-link"><span>Never Miss a Lead</span><span class="what-arrow">→</span></a>
-                  <a href="contact.html" class="what-mega-link"><span>Fill Your Calendar</span><span class="what-arrow">→</span></a>
-                  <a href="contact.html" class="what-mega-link"><span>Run On Autopilot</span><span class="what-arrow">→</span></a>
-                </div>
-                <div class="what-mega-col">
-                  <span class="what-mega-col-title">Digital Marketing</span>
-                  <a href="contact.html" class="what-mega-link"><span>Get Found First</span><span class="what-arrow">→</span></a>
-                  <a href="contact.html" class="what-mega-link"><span>Paid Advertising</span><span class="what-arrow">→</span></a>
-                  <a href="contact.html" class="what-mega-link"><span>Dominate Local Search</span><span class="what-arrow">→</span></a>
-                </div>
-                <div class="what-mega-col">
-                  <span class="what-mega-col-title">Reputation Management</span>
-                  <a href="contact.html" class="what-mega-link"><span>Build Your Reputation</span><span class="what-arrow">→</span></a>
-                  <a href="contact.html" class="what-mega-link"><span>Protect Your Brand</span><span class="what-arrow">→</span></a>
-                  <a href="contact.html" class="what-mega-link"><span>Own Every Channel</span><span class="what-arrow">→</span></a>
-                </div>
-                <div class="what-mega-col">
-                  <span class="what-mega-col-title">Scale &amp; Systems</span>
-                  <a href="contact.html" class="what-mega-link"><span>CRM Integration</span><span class="what-arrow">→</span></a>
-                  <a href="contact.html" class="what-mega-link"><span>Automated Follow-up</span><span class="what-arrow">→</span></a>
-                  <a href="contact.html" class="what-mega-link"><span>Growth Analytics</span><span class="what-arrow">→</span></a>
-                </div>
-              </div>
-              <div class="what-agency-bottom">
-                <a href="contact.html" class="what-agency-card">
-                  <div class="what-agency-card-left">
-                    <strong>Agency Partner Program</strong>
-                    <span>White-label our full platform under your brand</span>
-                  </div>
-                  <span class="what-agency-card-right">Learn More →</span>
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-inner">
+              <div class="what-drop-grid">
+                <a href="https://aiemployee.calyvonai.com/24-7-ai-lead-management-local-business" class="what-drop-card">
+                  <span class="what-drop-card-title">AI Employee</span>
+                  <span class="what-drop-card-desc">Answers calls, texts back leads, and books jobs automatically. 24/7 with no days off.</span>
+                </a>
+                <a href="contact.html" class="what-drop-card">
+                  <span class="what-drop-card-title">SEO / GEO / AEO</span>
+                  <span class="what-drop-card-desc">Get found first on Google, AI search, and voice results in your local market.</span>
+                </a>
+                <a href="contact.html" class="what-drop-card">
+                  <span class="what-drop-card-title">Conversational Website</span>
+                  <span class="what-drop-card-desc">A website that qualifies visitors and converts them into booked calls automatically.</span>
+                </a>
+                <a href="contact.html" class="what-drop-card">
+                  <span class="what-drop-card-title">Reputation Management</span>
+                  <span class="what-drop-card-desc">Automatically collect 5-star reviews and manage your online reputation on autopilot.</span>
+                </a>
+                <a href="contact.html" class="what-drop-card">
+                  <span class="what-drop-card-title">Social Media Management</span>
+                  <span class="what-drop-card-desc">Stay consistent on Facebook and Instagram without lifting a finger.</span>
+                </a>
+                <a href="contact.html" class="what-drop-card">
+                  <span class="what-drop-card-title">Digital Advertising</span>
+                  <span class="what-drop-card-desc">High-converting ads on Google and Meta that bring real leads, not just clicks.</span>
+                </a>
+                <a href="contact.html" class="what-drop-card">
+                  <span class="what-drop-card-title">Agency Partner Program</span>
+                  <span class="what-drop-card-desc">White-label Calyvon AI under your brand and add recurring revenue to your agency.</span>
                 </a>
               </div>
             </div>
           </div>
         </div>
-        <!-- Resources -->
-        <div class="nav-item has-dropdown" id="resourcesItem">
-          <button class="nav-link-btn" id="resourcesBtn" aria-haspopup="true" aria-expanded="false">
-            Resources <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+
+        <!-- Insights -->
+        <div class="nav-item">
+          <button class="nav-link-btn">
+            Insights
+            <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="nav-dropdown resources-dropdown" id="resourcesDropdown" role="menu">
-            <div class="mega-inner" style="padding-top:28px;padding-bottom:28px;">
-              <div class="resources-links">
-                <a href="faqs.html" class="resources-simple-link">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                  FAQ
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-inner">
+              <div class="insights-cards-row">
+                <a href="resources.html" class="insights-card">
+                  <span class="insights-card-title">Blog</span>
+                  <span class="insights-card-desc">Tips, case studies, and growth strategies for local service businesses.</span>
                 </a>
-                <a href="/blog" class="resources-simple-link">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                  Blog
+                <a href="faqs.html" class="insights-card">
+                  <span class="insights-card-title">FAQ</span>
+                  <span class="insights-card-desc">Common questions about Calyvon AI answered plainly and honestly.</span>
                 </a>
               </div>
             </div>
           </div>
         </div>
-      </div><!-- /nav-links -->
+
+        <a href="contact.html" class="nav-link-plain">Contact Us</a>
+      </div>
 
       <div class="nav-right">
         <a href="tel:+17696001145" class="nav-phone">+1 769-600-1145</a>
-        <a href="contact.html" class="nav-contact-link">Contact Us</a>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-          <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </button>
         <a href="contact.html" class="nav-cta-btn">Get Started</a>
       </div>
+
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-    </div><!-- /nav-container -->
+    </div>
 
     <!-- Mobile menu -->
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-      <button class="mobile-accordion-btn" data-target="mobileWho">Who We Serve <svg class="sub-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      <button class="mobile-accordion-btn" data-target="mobileWho">
+        Who We Serve
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
       <div class="mobile-accordion-content" id="mobileWho">
         <p class="mobile-sub-category">Home Services</p>
         <a href="contact.html" class="mobile-sub-link">Plumbing</a>
         <a href="contact.html" class="mobile-sub-link">HVAC</a>
+        <a href="contact.html" class="mobile-sub-link">Pest Control</a>
         <a href="contact.html" class="mobile-sub-link">Electrical</a>
         <a href="contact.html" class="mobile-sub-link">Roofing</a>
+        <a href="contact.html" class="mobile-sub-link">Landscaping</a>
+        <a href="contact.html" class="mobile-sub-link">Handyman</a>
+        <a href="contact.html" class="mobile-sub-link">Pool &amp; Spa</a>
         <p class="mobile-sub-category">Legal &amp; Professional</p>
         <a href="contact.html" class="mobile-sub-link">Personal Injury</a>
         <a href="contact.html" class="mobile-sub-link">Family Law</a>
-        <p class="mobile-sub-category">Other</p>
+        <a href="contact.html" class="mobile-sub-link">Criminal Defense</a>
+        <a href="contact.html" class="mobile-sub-link">Immigration</a>
+        <a href="contact.html" class="mobile-sub-link">Estate &amp; Probate</a>
+        <a href="contact.html" class="mobile-sub-link">Accounting &amp; Tax</a>
+        <a href="contact.html" class="mobile-sub-link">Financial Advisory</a>
+        <p class="mobile-sub-category">Other Local Businesses</p>
+        <a href="contact.html" class="mobile-sub-link">Pet Care &amp; Grooming</a>
+        <a href="contact.html" class="mobile-sub-link">Dental &amp; Medical</a>
         <a href="contact.html" class="mobile-sub-link">Auto Repair</a>
+        <a href="contact.html" class="mobile-sub-link">Restaurants &amp; Hospitality</a>
         <a href="contact.html" class="mobile-sub-link">Fitness &amp; Wellness</a>
+        <a href="contact.html" class="mobile-sub-link">Cleaning Services</a>
       </div>
-      <button class="mobile-accordion-btn" data-target="mobileWhat">What We Do <svg class="sub-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+
+      <button class="mobile-accordion-btn" data-target="mobileWhat">
+        What We Do
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
       <div class="mobile-accordion-content" id="mobileWhat">
-        <p class="mobile-sub-category">AI Employee</p>
-        <a href="contact.html" class="mobile-sub-link">Never Miss a Lead</a>
-        <a href="contact.html" class="mobile-sub-link">Fill Your Calendar</a>
-        <p class="mobile-sub-category">Digital Marketing</p>
-        <a href="contact.html" class="mobile-sub-link">Get Found First</a>
-        <a href="contact.html" class="mobile-sub-link">Paid Advertising</a>
-        <p class="mobile-sub-category">Scale &amp; Systems</p>
-        <a href="contact.html" class="mobile-sub-link">CRM Integration</a>
+        <a href="https://aiemployee.calyvonai.com/24-7-ai-lead-management-local-business" class="mobile-sub-link">AI Employee</a>
+        <a href="contact.html" class="mobile-sub-link">SEO / GEO / AEO</a>
+        <a href="contact.html" class="mobile-sub-link">Conversational Website</a>
+        <a href="contact.html" class="mobile-sub-link">Reputation Management</a>
+        <a href="contact.html" class="mobile-sub-link">Social Media Management</a>
+        <a href="contact.html" class="mobile-sub-link">Digital Advertising</a>
+        <a href="contact.html" class="mobile-sub-link">Agency Partner Program</a>
       </div>
-      <button class="mobile-accordion-btn" data-target="mobileResources">Resources <svg class="sub-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-      <div class="mobile-accordion-content" id="mobileResources">
+
+      <button class="mobile-accordion-btn" data-target="mobileInsights">
+        Insights
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="mobile-accordion-content" id="mobileInsights">
+        <a href="resources.html" class="mobile-sub-link">Blog</a>
         <a href="faqs.html" class="mobile-sub-link">FAQ</a>
-        <a href="/blog" class="mobile-sub-link">Blog</a>
       </div>
-      <a href="contact.html" class="mobile-link">Contact Us</a>
-      <a href="tel:+17696001145" class="mobile-link">+1 769-600-1145</a>
-      <a href="contact.html" class="mobile-cta">Get Started</a>
+
+      <a href="contact.html" class="mobile-sub-link" style="border-bottom: 1px solid rgba(255,255,255,0.08); padding: 14px 0; font-size: 15px; font-weight: 500; color: #fff;">Contact Us</a>
+
+      <div class="mobile-cta-wrap">
+        <a href="contact.html" class="mobile-cta">Get Started</a>
+        <a href="tel:+17696001145" class="mobile-phone-link">+1 769-600-1145</a>
+      </div>
     </div>
   </nav>
 
@@ -556,11 +1056,31 @@
     </div>
   </div>
 
+  <!-- Final CTA Section -->
+  <section class="final-cta" id="finalCta" data-animate>
+    <video class="final-cta-video" autoplay muted loop playsinline preload="none"
+           data-src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/69c67c93a235ae6893a7b43b.mp4"
+           style="background:#0A0F2E"></video>
+    <div class="final-cta-overlay"></div>
+    <div class="final-cta-content">
+      <h2 class="final-cta-headline">How many jobs did you lose last week to a missed call?</h2>
+      <a href="contact.html" class="btn-gradient btn-gradient-large">Book Your Free Strategy Call</a>
+      <div class="final-cta-features">
+        <span>No contracts</span>
+        <span>90-day money back guarantee</span>
+        <span>Live in 48 hours</span>
+        <span>Cancel anytime</span>
+      </div>
+      <a href="tel:+17696001145" class="final-cta-phone">+1 769-600-1145</a>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-column">
-        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/6943ff695b256b9571a1eb3a.svg" alt="Calyvon AI Logo" class="footer-logo" loading="lazy">
+        <img src="https://assets.cdn.filesafe.space/K0cPgnc4czjA0zpMOest/media/6943ff695b256b9571a1eb3a.svg"
+             alt="Calyvon AI Logo" class="footer-logo" loading="lazy" decoding="async">
         <p class="footer-tagline">AI-powered growth for local service businesses</p>
         <p class="footer-copyright">Copyright 2026 Calyvon AI<br>All rights reserved</p>
       </div>
@@ -574,11 +1094,15 @@
         </ul>
       </div>
       <div class="footer-column">
-        <h4 class="footer-column-title">Resources</h4>
+        <h4 class="footer-column-title">Industries</h4>
         <ul class="footer-links">
-          <li><a href="faqs.html">FAQ</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="contact.html">Plumbing</a></li>
+          <li><a href="contact.html">HVAC</a></li>
+          <li><a href="contact.html">Pest Control</a></li>
+          <li><a href="contact.html">Electrical</a></li>
+          <li><a href="contact.html">Personal Injury</a></li>
+          <li><a href="contact.html">Roofing</a></li>
+          <li><a href="contact.html">Landscaping</a></li>
         </ul>
       </div>
       <div class="footer-column">
@@ -588,6 +1112,8 @@
           <li>Sheridan Wyoming 82801</li>
           <li><a href="tel:+17696001145">+1 769-600-1145</a></li>
           <li><a href="mailto:info@calyvonai.com">info@calyvonai.com</a></li>
+          <li><a href="faqs.html">FAQ</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
         </ul>
       </div>
     </div>
@@ -608,50 +1134,23 @@
     lucide.createIcons();
 
     // Scroll progress
+    const scrollProgress = document.getElementById('scrollProgress');
     window.addEventListener('scroll', () => {
-      const el = document.getElementById('scrollProgress');
-      const p = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
-      el.style.width = p + '%';
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      scrollProgress.style.width = ((scrollTop / docHeight) * 100) + '%';
     });
 
-    // Navbar dropdowns
-    const navbar = document.getElementById('navbar');
-    const dropdownItems = document.querySelectorAll('.nav-item.has-dropdown');
-    dropdownItems.forEach(item => {
-      const btn = item.querySelector('.nav-link-btn');
-      const dropdown = item.querySelector('.nav-dropdown');
-      let leaveTimer;
-      const openDrop = () => {
-        clearTimeout(leaveTimer);
-        dropdownItems.forEach(other => {
-          if (other !== item) {
-            other.querySelector('.nav-dropdown').classList.remove('open');
-            other.querySelector('.nav-link-btn').setAttribute('aria-expanded','false');
-          }
-        });
-        dropdown.classList.add('open');
-        btn.setAttribute('aria-expanded','true');
-        navbar.classList.add('menu-open');
-      };
-      const closeDrop = () => {
-        leaveTimer = setTimeout(() => {
-          dropdown.classList.remove('open');
-          btn.setAttribute('aria-expanded','false');
-          if (!document.querySelector('.nav-dropdown.open')) navbar.classList.remove('menu-open');
-        }, 120);
-      };
-      item.addEventListener('mouseenter', openDrop);
-      item.addEventListener('mouseleave', closeDrop);
-      btn.addEventListener('click', () => { dropdown.classList.contains('open') ? closeDrop() : openDrop(); });
-    });
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.nav-item.has-dropdown')) {
-        dropdownItems.forEach(item => {
-          item.querySelector('.nav-dropdown').classList.remove('open');
-          item.querySelector('.nav-link-btn').setAttribute('aria-expanded','false');
-        });
-        navbar.classList.remove('menu-open');
-      }
+    // Desktop mega-menu hover
+    document.querySelectorAll('.nav-item').forEach(item => {
+      if (!item.querySelector('.nav-dropdown')) return;
+      let hideTimer;
+      const open  = () => { clearTimeout(hideTimer); item.classList.add('is-open'); };
+      const close = () => { hideTimer = setTimeout(() => item.classList.remove('is-open'), 120); };
+      item.addEventListener('mouseenter', open);
+      item.addEventListener('mouseleave', close);
+      item.querySelector('.nav-dropdown').addEventListener('mouseenter', open);
+      item.querySelector('.nav-dropdown').addEventListener('mouseleave', close);
     });
 
     // Hamburger
@@ -665,16 +1164,58 @@
       mobileMenu.setAttribute('aria-hidden', !open);
     });
 
-    // Mobile accordions
+    // Mobile accordion
     document.querySelectorAll('.mobile-accordion-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        const id = btn.dataset.target;
-        const content = document.getElementById(id);
+        const targetId = btn.dataset.target;
+        const content = document.getElementById(targetId);
         const isOpen = content.classList.contains('open');
-        document.querySelectorAll('.mobile-accordion-content').forEach(c => c.classList.remove('open'));
+        document.querySelectorAll('.mobile-accordion-content').forEach(el => el.classList.remove('open'));
         if (!isOpen) content.classList.add('open');
       });
     });
+
+    // Close mobile menu on link tap
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      });
+    });
+
+    // Video lazy loading
+    const lazyVideos = document.querySelectorAll('video[data-src]');
+    if (lazyVideos.length) {
+      const lazyVideoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            if (!video.src && video.dataset.src) {
+              video.src = video.dataset.src;
+              video.load();
+            }
+            video.play().catch(() => {});
+          } else {
+            if (!video.paused) video.pause();
+          }
+        });
+      }, { threshold: 0.15 });
+      lazyVideos.forEach(v => lazyVideoObserver.observe(v));
+    }
+
+    // Scroll animations
+    const animateElements = document.querySelectorAll('[data-animate]');
+    const animateObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          animateObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    animateElements.forEach(el => animateObserver.observe(el));
   </script>
 </body>
 </html>
