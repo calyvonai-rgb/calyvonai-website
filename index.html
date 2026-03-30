@@ -676,6 +676,7 @@
       .hamburger { display: flex; }
       .mobile-menu { display: flex; }
       .nav-container { padding: 0 20px; }
+      .nav-dropdown { display: none !important; }
     }
 
     /* Shared button */
@@ -1588,19 +1589,26 @@
         padding: 0 20px;
       }
       .hero-subheadline {
-        font-size: 14px;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 100%;
+        font-size: 18px;
+        font-weight: 600;
+        color: #FFFFFF;
+        line-height: 1.5;
+        text-align: left;
         white-space: normal;
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
       }
       .hero-trust-logos {
+        display: flex;
+        flex-direction: row;
         justify-content: center;
-        gap: 32px;
-        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: nowrap;
       }
-      .hero-trust-img { height: 64px; }
-      .hero-trust-caption { font-size: 12px; }
+      .hero-trust-img { height: 44px; }
+      .hero-trust-caption { font-size: 10px; }
 
       /* Global section text */
       .section-label { font-size: 12px; letter-spacing: 2px; }
@@ -1675,7 +1683,7 @@
 
     @media (max-width: 480px) {
       .hero-headline { font-size: 56px; }
-      .hero-subheadline { font-size: 14px; white-space: normal; }
+      .hero-subheadline { font-size: 18px; white-space: normal; }
       .hero-trust-img { height: 52px; }
       .integrations-grid { grid-template-columns: repeat(2, 1fr); }
       .wws-cat-pill { padding: 20px 22px; }
