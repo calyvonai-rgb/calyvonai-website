@@ -592,8 +592,9 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.35s ease;
+      visibility: hidden;
     }
-    .mobile-menu.open { max-height: calc(100vh - 68px); overflow-y: auto; }
+    .mobile-menu.open { max-height: calc(100vh - 68px); overflow-y: auto; visibility: visible; }
     .mobile-nav-item {
       padding: 12px 16px;
       color: #ffffff;
@@ -676,7 +677,9 @@
       .hamburger { display: flex; }
       .mobile-menu { display: flex; }
       .nav-container { padding: 0 20px; }
-      .nav-dropdown { display: none !important; }
+      .nav-dropdown,
+      .nav-item.is-open .nav-dropdown { display: none !important; }
+      .nav-item.is-open .nav-dropdown { display: none !important; opacity: 0 !important; pointer-events: none !important; visibility: hidden !important; }
     }
 
     /* Shared button */
@@ -1582,7 +1585,7 @@
 
     @media (max-width: 768px) {
       /* Hero */
-      .hero { padding-top: 72px; min-height: 100svh; }
+      .hero { padding-top: 72px !important; min-height: 100svh; }
       .hero-content {
         text-align: center;
         max-width: 100%;
